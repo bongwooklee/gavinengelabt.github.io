@@ -1933,6 +1933,16 @@ var rLink = e.children("A").eq(0).attr("href"),
 
         </ul>
       </div>
+
+      <div class="well">
+        <div id="granteeInfo">
+          <h3 class="name"></h3>
+          <div class="timeline">
+          </div>
+          <div class="description">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -2016,61 +2026,69 @@ var rLink = e.children("A").eq(0).attr("href"),
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cssmapsplugin.com/5/jquery.cssmap.min.js"></script>
 <script type="text/javascript">
+
 $(document).ready(function(){
 
+/* next:
+
+Community Catalyst
+, 'ccat'
+
+*/
+
 var stateData = {
-  usa1: { name: 'Alabama', grantees: ['asdf1', 'fffsadf', 'fff'] },
-  usa2: { name: 'Alaska', grantees: ['asdf2', 'fffsadf', 'fff'] },
-  usa3: { name: 'Arizona', grantees: ['asdf2', 'fffsadf', 'fff'] },
-  usa4: { name: 'Arkansas', grantees: ['asdf', 'fffsadf', 'fff'] },
-  usa5: { name: 'California', grantees: ['aasdfsdf', 'fffsadf', 'fff'] },
-  usa6: { name: 'Colorado', grantees: ['asffffdf', 'fffsadf', 'fff'] },
-  usa7: { name: 'Connecticut', grantees: ['asasdfsadfdf', 'fffsadf', 'fff'] },
-  usa8: { name: 'Delaware', grantees: ['asasdfdf', 'fffsadf', 'fff'] },
-  usa9: { name: 'Florida', grantees: ['asaaadf', 'fffsadf', 'fff'] },
-  usa10: { name: 'Georgia', grantees: ['asasdfasdfdf', 'fffsadf', 'fff'] },
-  usa11: { name: 'Hawaii', grantees: ['asadsfdf', 'fffsadf', 'fff'] },
-  usa12: { name: 'Idaho', grantees: ['asdhjgfhfgf', 'fffsadf', 'fff'] },
-  usa13: { name: 'Illinois', grantees: ['aasdsdf', 'fffsadf', 'fff'] },
-  usa14: { name: 'Indiana', grantees: ['dfh', 'fffsadf', 'fff'] },
-  usa15: { name: 'Iowa', grantees: ['asddfgdfghf', 'fffsadf', 'fff'] },
-  usa16: { name: 'Kansas', grantees: ['dfh', 'fffsadf', 'fff'] },
-  usa17: { name: 'Kentucky', grantees: ['adfghsdf', 'fffsadf', 'fff'] },
-  usa18: { name: 'Louisiana', grantees: ['asdf', 'fffsadf', 'fff'] },
-  usa19: { name: 'Maine', grantees: ['asdf', 'dfhdfhdfhg', 'fff'] },
-  usa20: { name: 'Maryland', grantees: ['dfh', 'fffsadf', 'fff'] },
-  usa21: { name: 'Massachusetts', grantees: ['asdf', 'fffsadf', 'fff'] },
-  usa22: { name: 'Michigan', grantees: ['asdf', 'fffsadf', 'fff'] },
-  usa23: { name: 'Minnesota', grantees: ['asdf', 'ffdfhfsadf', 'fff'] },
-  usa24: { name: 'Mississippi', grantees: ['asdf', 'fffsadf', 'fff'] },
-  usa25: { name: 'Missouri', grantees: ['asdf', 'fffsadf', 'fff'] },
-  usa26: { name: 'Montana', grantees: ['asdf', 'fffsadf', 'fff'] },
-  usa27: { name: 'Nebraska', grantees: ['asdf', 'fffsadf', 'fff'] },
-  usa28: { name: 'Nevada', grantees: ['asdf', 'fffsa4252df', 'fff'] },
-  usa29: { name: 'New Hampshire', grantees: ['aap', 'bhsb', 'ccf'] },
-  usa30: { name: 'New Jersey', grantees: ['asdf', 'fffs334df', 'fff'] },
-  usa31: { name: 'New Mexico', grantees: ['asdf', 'ff567fsadf', 'fff'] },
-  usa32: { name: 'New York', grantees: ['asdf', 'fffsadf', 'fff'] },
-  usa33: { name: 'North Carolina', grantees: ['asdf', 'fffsadf', 'fff'] },
-  usa34: { name: 'North Dakota', grantees: ['asdf', 'fffsadf', 'fff'] },
-  usa35: { name: 'Ohio', grantees: ['asdf', 'fffsadf', 'fff'] },
-  usa36: { name: 'Oklahoma', grantees: ['asdf', 'fffsasdfgsdgdf', 'fff'] },
-  usa37: { name: 'Oregon', grantees: ['asdf', 'fffsadf', 'fff'] },
-  usa38: { name: 'Pennsylvania', grantees: ['asdf', 'fffs99990adf', 'fff'] },
-  usa39: { name: 'Rhode Island', grantees: ['asdf', 'fff278sadf', 'fff'] },
-  usa40: { name: 'South Carolina', grantees: ['asdf', 'fff222sadf', 'fff'] },
-  usa41: { name: 'South Dakota', grantees: ['asdf', 'ff4544fsadf', 'fff'] },
-  usa42: { name: 'Tennessee', grantees: ['asdf', 'fff13456y7sadf', 'fff'] },
-  usa43: { name: 'Texas', grantees: ['asdf', 'fffs513245adf', 'fff'] },
-  usa44: { name: 'Utah', grantees: ['asdf', 'fffsa21341234df', 'fff'] },
-  usa45: { name: 'Vermont', grantees: ['asdf', 'fffs111adf', 'fff'] },
-  usa46: { name: 'Virginia', grantees: ['asdf', 'fff2222sadf', 'fff'] },
-  usa47: { name: 'Washington', grantees: ['asdf', '4444', 'fff'] },
-  usa48: { name: 'Washington DC', grantees: ['asdf', 'fff234sadf', 'fff'] },
-  usa49: { name: 'West Virginia', grantees: ['asdf', 'fff24234sadf', 'fff'] },
-  usa50: { name: 'Wisconsin', grantees: ['asdf', 'fffs2324adf', 'fff'] },
-  usa51: { name: 'Wyoming', grantees: ['asdf', 'fffsa22df', 'fff'] },
-  usa52: { name: 'Puerto Rico', grantees: ['asdf', 'ffgggfsadf', 'fff'] }
+  usa1: { name: 'Alabama', grantees: ['cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc'] },
+  usa2: { name: 'Alaska', grantees: ['cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa3: { name: 'Arizona', grantees: ['cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc'] },
+  usa4: { name: 'Arkansas', grantees: ['cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa5: { name: 'California', grantees: ['cafp', 'ccf', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'kfri', 'lac', 'mgr', 'nas', 'ncbh', 'norc'] },
+  usa6: { name: 'Colorado', grantees: ['cafp', 'csi', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh'] },
+  usa7: { name: 'Connecticut', grantees: ['aap', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa8: { name: 'Delaware', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa9: { name: 'Florida', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa10: { name: 'Georgia', grantees: ['aap', 'cafp', 'csi', 'cdcf', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa11: { name: 'Hawaii', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa12: { name: 'Idaho', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc'] },
+  usa13: { name: 'Illinois', grantees: ['aap', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc'] },
+  usa14: { name: 'Indiana', grantees: ['', 'cafp', 'cdcf', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa15: { name: 'Iowa', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa16: { name: 'Kansas', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh'] },
+  usa17: { name: 'Kentucky', grantees: ['', 'cafp', 'cdcf', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa18: { name: 'Louisiana', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa19: { name: 'Maine', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa20: { name: 'Maryland', grantees: ['bhsb', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc'] },
+  usa21: { name: 'Massachusetts', grantees: ['', 'cafp', 'csi', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa22: { name: 'Michigan', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc'] },
+  usa23: { name: 'Minnesota', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa24: { name: 'Mississippi', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc'] },
+  usa25: { name: 'Missouri', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc'] },
+  usa26: { name: 'Montana', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa27: { name: 'Nebraska', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa28: { name: 'Nevada', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa29: { name: 'New Hampshire', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mfu', 'mgr', 'nas'] },
+  usa30: { name: 'New Jersey', grantees: ['', 'cafp', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc'] },
+  usa31: { name: 'New Mexico', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa32: { name: 'New York', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh'] },
+  usa33: { name: 'North Carolina', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa34: { name: 'North Dakota', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa35: { name: 'Ohio', grantees: ['', 'cafp', 'csi', 'cdcf', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa36: { name: 'Oklahoma', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa37: { name: 'Oregon', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa38: { name: 'Pennsylvania', grantees: ['', 'cafp', 'csi', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc'] },
+  usa39: { name: 'Rhode Island', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh'] },
+  usa40: { name: 'South Carolina', grantees: ['', 'cafp', 'csi', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa41: { name: 'South Dakota', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa42: { name: 'Tennessee', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'norc'] },
+  usa43: { name: 'Texas', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa44: { name: 'Utah', grantees: ['aap', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa45: { name: 'Vermont', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa46: { name: 'Virginia', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa47: { name: 'Washington', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa48: { name: 'Washington DC', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh'] },
+  usa49: { name: 'West Virginia', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc'] },
+  usa50: { name: 'Wisconsin', grantees: ['', 'cafp', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa51: { name: 'Wyoming', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] },
+  usa52: { name: 'Puerto Rico', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas'] }
 }
 
 
@@ -2095,13 +2113,13 @@ var granteeData = {
 
   cadca: { name: "Community Anti-Drug Coalitions of America", timeline: "7/1/15 – 6/30/16", description: "CADCA will create a planning process to develop, pilot, and evaluate an approach to provide training and technical assistance to community coalitions to support the development and implementation of SBIRT in their communities." },
 
-  cc: { name: "Community Catalyst", timeline: "12/1/13-11/30/16", description: "CC is developing consumer-led advocacy campaigns in six states (GA, MA, NY, NJ, OH, WI) to enact state policy change to increase access to SBIRT by improving reimbursement and expanding the settings/professionals that can provide it, with a focus on peer approaches." },
+  ccat: { name: "Community Catalyst", timeline: "12/1/13-11/30/16", description: "CC is developing consumer-led advocacy campaigns in six states (GA, MA, NY, NJ, OH, WI) to enact state policy change to increase access to SBIRT by improving reimbursement and expanding the settings/professionals that can provide it, with a focus on peer approaches." },
 
   facadd: { name: "Facing Addiction", timeline: "4/1/16 – 3/31/18", description: "Facing Addiction will build and organize a grassroots advocacy movement of those affected by addiction to advance public health responses, including Screening, Brief Intervention, and Referral to Treatment (SBIRT)." },
 
   fract: { name: "Fractured Atlas", timeline: "10/1/14-9/30/15", description: "Fractured Atlas is producing and conducting community discussion forums for Generation Found, a documentary film project about adolescents in recovery and the pediatric nature of the onset of addiction." },
 
-  fi: { name: "Frameworks Institute", timeline: "1/1/15-4/30/16", description: "FrameWorks will explore how to effectively communicate with the members of the public, practitioners, and policymakers about youth substance use and what it takes to improve outcomes for young people." },
+  fin: { name: "Frameworks Institute", timeline: "1/1/15-4/30/16", description: "FrameWorks will explore how to effectively communicate with the members of the public, practitioners, and policymakers about youth substance use and what it takes to improve outcomes for young people." },
 
   gih: { name: "Grantmakers in Health", timeline: "8/1/15 – 7/31/16", description: "GIH will convene behavioral health funders, with a particular emphasis on SUD, as part of the GIH Fall Forum in Washington, DC to illuminate philanthropy’s current assets, gaps, and barriers to scaling behavioral health efforts as well as opportunities for partnering with different sectors and government." },
 
@@ -2111,7 +2129,7 @@ var granteeData = {
 
   mfu: { name: "Mentor Foundation USA", timeline: "11/1/15-7/31/16", description: "Mentor Foundation USA will create an interactive “multi-media” version of their current Shattering the Myths model, called STM 2.0, that incorporates messages for prevention specifically designed to counteract the misinformation (myths) adolescents have about drugs and alcohol. Messages will be framed to promote the benefits of prevention behaviors." },
 
-  mg: { name: "Mosaic Group", timeline: "9/1/14-8/31/16", description: "Mosaic Group is developing an Adolescent SBIRT checklist to support effective implementation of SBIRT for Foundation grantees and is providing technical assistance to implement the checklist with three grantees (National Council, School Based Health Alliance, YouthBuild)." },
+  mgr: { name: "Mosaic Group", timeline: "9/1/14-8/31/16", description: "Mosaic Group is developing an Adolescent SBIRT checklist to support effective implementation of SBIRT for Foundation grantees and is providing technical assistance to implement the checklist with three grantees (National Council, School Based Health Alliance, YouthBuild)." },
 
   nas: { name: "National Academy of Sciences", timeline: "7/1/15-6/30/17", description: "The National Academies will continue to coordinate the Forum on Promoting Children's Cognitive, Affective, and Behavioral Health (C-CAB Forum). The Forum will consist of scientists, practitioners, government officials, and staff from private foundations. The goal is to advance an agenda focused on implementation that promote the mental, emotional, and behavioral health of adolescents." },
 
@@ -2129,7 +2147,7 @@ var granteeData = {
 
   psurf: { name: "Portland State University - Reclaiming Futures", timeline: "9/1/2014-6/30/2018", description: "Reclaiming Futures is incorporating SBIRT into the model to expand early intervention and diversion opportunities for court-involved youth." },
 
-  pu: { name: "Project Hope", timeline: "3/1/16 – 2/28/17", description: "Health Affairs will conduct a briefing to highlight the issues in the behavioral health journal and discuss how policymakers and other stakeholders can promote behavioral health, health policy, and health systems improvement. This briefing will be held in Washington, DC and will include key stakeholders, including members of Congress and the Administration—as well as other health and health care stakeholders." },
+  phope: { name: "Project Hope", timeline: "3/1/16 – 2/28/17", description: "Health Affairs will conduct a briefing to highlight the issues in the behavioral health journal and discuss how policymakers and other stakeholders can promote behavioral health, health policy, and health systems improvement. This briefing will be held in Washington, DC and will include key stakeholders, including members of Congress and the Administration—as well as other health and health care stakeholders." },
 
   sbha: { name: "School Based Health Alliance", ended: true, timeline: "6/1/2014-5/31/2016", description: "SBHA conducted a two-year pilot project to provide adolescent-specific SBIRT training and technical assistance to 10 school-based health clinics" },
 
@@ -2180,7 +2198,7 @@ $("#map-usa").CSSMap({
     for (var i = 0, len = stateInfo.grantees.length; i < len; i++) {
       for (var key in granteeData) {
         if (stateInfo.grantees[i] == key) {
-          granteesUl = granteesUl + '<li>' + granteeData[key]['name'] + '</li>';
+          granteesUl = granteesUl + '<li><a class="granteeLink" data-key="'+key+'" href="#' + key + '">' + granteeData[key]['name'] + '</a></li>';
         }
       }     
     }
@@ -2198,6 +2216,79 @@ $("#map-usa").CSSMap({
   }
 });
 // END OF THE CSSMap;
+
+
+
+  function hashCheck() {
+    var hashAttr = '';
+
+    if(window.location.hash) {
+      hashAttr = window.location.hash.replace(/[^a-z0-9]/gi, '');
+    } 
+
+    // loop all grantees
+    for (var key in granteeData) {
+      // if found grantee, then pop its data into granteeInfo  
+      if (hashAttr == key) {
+        //console.log(granteeData[key]['name']);
+        /*
+    <div class="well">
+        <div id="granteeInfo">
+          <h3 class="name"></h3>
+          <div class="timeline">
+          </div>
+          <div class="description">
+          </div>
+        </div>
+      </div>
+      */
+        $("#granteeInfo .name").html(granteeData[key]['name']);
+        $("#granteeInfo .timeline").html(granteeData[key]['timeline']);
+        $("#granteeInfo .description").html(granteeData[key]['description']);
+        ///
+
+        // highlight states that contain this grantee
+        /*for (var i = 0, len = stateInfo.grantees.length; i < len; i++) {
+          var found = false;
+          if (stateInfo.grantees[i] == key) {
+            found = true;
+          }
+        }*/
+        ///
+
+        for (var stateKey in stateData) {
+         // if (stateInfo.grantees[i] == key) {
+           // granteesUl = granteesUl + '<li><a class="granteeLink" data-key="'+key+'" href="#' + key + '">' + granteeData[key]['name'] + '</a></li>';
+         // }
+          //console.log('check state:'+stateData[stateKey].name);
+          // loop grantees in each state
+          var foundIt = false;
+          for (var i3 = 0, len3 = stateData[stateKey].grantees.length; i3 < len3; i3++) {
+            //console.log('found grantee '+stateData[stateKey].grantees[i3]);
+            if (stateData[stateKey].grantees[i3] == hashAttr) {
+              foundIt = true
+            }
+          }
+
+          if (foundIt) {
+            console.log('highlight state: ' + stateKey);
+            $( "." + stateKey ).addClass( 'active-region' );
+          }
+          else {
+            if ($( "." + stateKey ).hasClass( 'active-region' )) {
+              console.log('hide state: ' + stateKey);
+              $( "." + stateKey ).removeClass( 'active-region' );
+            }
+          }
+        }   
+      }
+    }
+  }
+
+  hashCheck();
+  window.onhashchange = hashCheck;
+
+
 
 });
 </script>
