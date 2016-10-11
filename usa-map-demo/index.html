@@ -218,6 +218,7 @@
 $(document).ready(function(){
 
 
+
 var stateData = {
   usa1: { name: 'Alabama', grantees: ['cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
   usa2: { name: 'Alaska', grantees: ['cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
@@ -272,7 +273,6 @@ var stateData = {
   usa51: { name: 'Wyoming', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
   usa52: { name: 'Puerto Rico', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] }
 }
-
 
 
 var granteeData = {
@@ -365,13 +365,22 @@ $("#map-usa").CSSMap({
   "tooltips": "sticky",
   "responsive": "auto",
   "tapOnce": true,
-  "onHover": function(e){
-    //console.log(e);
-    //console.log(e[0].classList);
+  "onLoad": function(e){
+    /** apply opacity to each state based on count of grantees */
+
+      for (var stateKey in stateData) {
+       
+        // loop grantees in each state
+        var count = stateData[stateKey].grantees.length - 10;
+        var newOpacity = count / 13;
+        $( "." + stateKey + " .bg").css( 'opacity', newOpacity );
+
+        //console.log(stateData[stateKey].name+' has grantee count '+stateData[stateKey].grantees.length);
+      }
+    ///
   },
   "onClick": function(e){
-    //console.log(e);
-    //console.log(e[0].classList[0]);
+
     var stateCode = e[0].classList[0];
     var stateInfo = stateData[stateCode];
     $("#stateName").html(stateInfo['name']);
@@ -413,40 +422,18 @@ $("#map-usa").CSSMap({
       // if found grantee, then pop its data into granteeInfo  
       if (hashAttr == key) {
         //console.log(granteeData[key]['name']);
-        /*
-    <div class="well">
-        <div id="granteeInfo">
-          <h3 class="name"></h3>
-          <div class="timeline">
-          </div>
-          <div class="description">
-          </div>
-        </div>
-      </div>
-      */
+      
         $("#granteeInfo .name").html(granteeData[key]['name']);
         $("#granteeInfo .timeline").html(granteeData[key]['timeline']);
         $("#granteeInfo .description").html(granteeData[key]['description']);
-        ///
 
         // highlight states that contain this grantee
-        /*for (var i = 0, len = stateInfo.grantees.length; i < len; i++) {
-          var found = false;
-          if (stateInfo.grantees[i] == key) {
-            found = true;
-          }
-        }*/
-        ///
 
         for (var stateKey in stateData) {
-         // if (stateInfo.grantees[i] == key) {
-           // granteesUl = granteesUl + '<li><a class="granteeLink" data-key="'+key+'" href="#' + key + '">' + granteeData[key]['name'] + '</a></li>';
-         // }
-          //console.log('check state:'+stateData[stateKey].name);
+         
           // loop grantees in each state
           var foundIt = false;
           for (var i3 = 0, len3 = stateData[stateKey].grantees.length; i3 < len3; i3++) {
-            //console.log('found grantee '+stateData[stateKey].grantees[i3]);
             if (stateData[stateKey].grantees[i3] == hashAttr) {
               foundIt = true
             }
