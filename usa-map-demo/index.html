@@ -90,11 +90,11 @@
 
     <div class="col-sm-8 text-left">
       <h1>Welcome</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
       <hr>
       <ul>
-        <li>show PR?</li>
-        <li>highlight the state that is based in, example: National Council of Behavioral Health, do we highlight Washington DC?
+        <li>* show PR?</li>
+        <li>* highlight the state that is based in, example: National Council of Behavioral Health, do we highlight Washington DC?
       </ul>
           
       <article class="page-content">
@@ -106,7 +106,7 @@
           <!-- MAP -->
           <div id="display-map" class="display-demo-map">
             <!-- CSSMap - United States of America -->
-            <div id="map-usa">
+            <div id="map-usa" style="display:none;">
              <ul class="usa">
               <li class="usa1"><a href="#alabama">Alabama</a></li>
               <li class="usa2"><a href="#alaska">Alaska</a></li>
@@ -366,18 +366,19 @@ $("#map-usa").CSSMap({
   "responsive": "auto",
   "tapOnce": true,
   "onLoad": function(e){
+    // unhide map (hiding prevents loading untidyness)
+    jQuery("#map-usa").show();
+
     /** apply opacity to each state based on count of grantees */
+    for (var stateKey in stateData) {
+     
+      // loop grantees in each state
+      var count = stateData[stateKey].grantees.length - 10;
+      var newOpacity = count / 13;
+      $( "." + stateKey + " .bg").css( 'opacity', newOpacity );
 
-      for (var stateKey in stateData) {
-       
-        // loop grantees in each state
-        var count = stateData[stateKey].grantees.length - 10;
-        var newOpacity = count / 13;
-        $( "." + stateKey + " .bg").css( 'opacity', newOpacity );
-
-        //console.log(stateData[stateKey].name+' has grantee count '+stateData[stateKey].grantees.length);
-      }
-    ///
+      //console.log(stateData[stateKey].name+' has grantee count '+stateData[stateKey].grantees.length);
+    }
   },
   "onClick": function(e){
 
