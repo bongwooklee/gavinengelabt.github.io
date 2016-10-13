@@ -49,6 +49,9 @@
 .cssmap-1450 .usa1 a{left:987px;top:655px} .cssmap-1450 .usa2 a{left:217px;top:817px}.cssmap-1450 .usa2 a.tooltip-left .tooltip-arrow{left:217px} .cssmap-1450 .usa3 a{left:318px;top:580px}.cssmap-1450 .usa3 a.tooltip-left .tooltip-arrow{left:318px} .cssmap-1450 .usa4 a{left:828px;top:599px} .cssmap-1450 .usa5 a{left:118px;top:440px}.cssmap-1450 .usa5 a.tooltip-left .tooltip-arrow{left:118px} .cssmap-1450 .usa6 a{left:496px;top:455px} .cssmap-1450 .usa7 a{left:1297px;top:316px}.cssmap-1450 .usa7 a.tooltip-right .tooltip-arrow{right:153px} .cssmap-1450 .usa8 a{left:1249px;top:418px}.cssmap-1450 .usa8 a.tooltip-right .tooltip-arrow{right:201px} .cssmap-1450 .usa9 a{left:1146px;top:791px}.cssmap-1450 .usa9 a.tooltip-right .tooltip-arrow{right:304px} .cssmap-1450 .usa10 a{left:1081px;top:652px}.cssmap-1450 .usa10 a.tooltip-right .tooltip-arrow{right:369px} .cssmap-1450 .usa11 a{left:525px;top:929px} .cssmap-1450 .usa12 a{left:316px;top:277px}.cssmap-1450 .usa12 a.tooltip-left .tooltip-arrow{left:316px} .cssmap-1450 .usa13 a{left:901px;top:428px} .cssmap-1450 .usa14 a{left:981px;top:425px} .cssmap-1450 .usa15 a{left:799px;top:374px} .cssmap-1450 .usa16 a{left:679px;top:485px} .cssmap-1450 .usa17 a{left:1032px;top:497px} .cssmap-1450 .usa18 a{left:828px;top:713px} .cssmap-1450 .usa19 a{left:1342px;top:172px}.cssmap-1450 .usa19 a.tooltip-right .tooltip-arrow{right:108px} .cssmap-1450 .usa20 a{left:1213px;top:412px}.cssmap-1450 .usa20 a.tooltip-right .tooltip-arrow{right:237px} .cssmap-1450 .usa21 a{left:1308px;top:287px}.cssmap-1450 .usa21 a.tooltip-right .tooltip-arrow{right:142px} .cssmap-1450 .usa22 a{left:993px;top:296px} .cssmap-1450 .usa23 a{left:774px;top:245px} .cssmap-1450 .usa24 a{left:909px;top:664px} .cssmap-1450 .usa25 a{left:826px;top:490px} .cssmap-1450 .usa26 a{left:445px;top:191px} .cssmap-1450 .usa27 a{left:649px;top:388px} .cssmap-1450 .usa28 a{left:223px;top:388px}.cssmap-1450 .usa28 a.tooltip-left .tooltip-arrow{left:223px} .cssmap-1450 .usa29 a{left:1303px;top:242px}.cssmap-1450 .usa29 a.tooltip-right .tooltip-arrow{right:147px} .cssmap-1450 .usa30 a{left:1266px;top:377px}.cssmap-1450 .usa30 a.tooltip-right .tooltip-arrow{right:184px} .cssmap-1450 .usa31 a{left:466px;top:601px} .cssmap-1450 .usa32 a{left:1233px;top:284px}.cssmap-1450 .usa32 a.tooltip-right .tooltip-arrow{right:217px} .cssmap-1450 .usa33 a{left:1170px;top:542px}.cssmap-1450 .usa33 a.tooltip-right .tooltip-arrow{right:280px} .cssmap-1450 .usa34 a{left:645px;top:200px} .cssmap-1450 .usa35 a{left:1065px;top:410px} .cssmap-1450 .usa36 a{left:705px;top:581px} .cssmap-1450 .usa37 a{left:175px;top:227px}.cssmap-1450 .usa37 a.tooltip-left .tooltip-arrow{left:175px} .cssmap-1450 .usa38 a{left:1183px;top:368px}.cssmap-1450 .usa38 a.tooltip-right .tooltip-arrow{right:267px} .cssmap-1450 .usa39 a{left:1322px;top:307px}.cssmap-1450 .usa39 a.tooltip-right .tooltip-arrow{right:128px} .cssmap-1450 .usa40 a{left:1146px;top:607px}.cssmap-1450 .usa40 a.tooltip-right .tooltip-arrow{right:304px} .cssmap-1450 .usa41 a{left:640px;top:295px} .cssmap-1450 .usa42 a{left:984px;top:560px} .cssmap-1450 .usa43 a{left:657px;top:709px} .cssmap-1450 .usa44 a{left:348px;top:427px} .cssmap-1450 .usa45 a{left:1275px;top:241px}.cssmap-1450 .usa45 a.tooltip-right .tooltip-arrow{right:175px} .cssmap-1450 .usa46 a{left:1186px;top:473px}.cssmap-1450 .usa46 a.tooltip-right .tooltip-arrow{right:264px} .cssmap-1450 .usa47 a{left:216px;top:119px}.cssmap-1450 .usa47 a.tooltip-left .tooltip-arrow{left:216px} .cssmap-1450 .usa48 a{left:1214px;top:428px}.cssmap-1450 .usa48 a.tooltip-right .tooltip-arrow{right:236px} .cssmap-1450 .usa49 a{left:1117px;top:458px}.cssmap-1450 .usa49 a.tooltip-right .tooltip-arrow{right:333px} .cssmap-1450 .usa50 a{left:880px;top:289px} .cssmap-1450 .usa51 a{left:463px;top:322px} .cssmap-1450 .usa52 a{left:937px;top:962px}
 /* NON HOVER/NON SELECTED END */
 
+#granteeSelect {
+  max-width: 350px;
+}
 
 #stateGrantees {
   padding-left: 20px;
@@ -59,44 +62,28 @@
 
 }
 
+#granteeInfo,
+#stateInfo 
+{ display:none; }
+
 #programInfo .description,
 #granteeInfo .description {
   text-align: justify;
 }
 
-.opacity1 { opacity: 0.0333}
-.opacity2 { opacity: 0.0667}
-.opacity3 { opacity: 0.1}
-.opacity4 { opacity: 0.133}
-.opacity5 { opacity: 0.1667}
-.opacity6 { opacity: 0.2}
-.opacity7 { opacity: 0.233}
-.opacity8 { opacity: 0.2667}
-.opacity9 { opacity: 0.3}
-.opacity10 { opacity: 0.333}
-.opacity11 { opacity: 0.3667}
-.opacity12 { opacity: 0.4}
-.opacity13 { opacity: 0.433}
-.opacity14 { opacity: 0.4667}
-.opacity15 { opacity: 0.5}
-.opacity16 { opacity: 0.533}
-.opacity17 { opacity: 0.5667}
-.opacity18 { opacity: 0.6}
-.opacity19 { opacity: 0.633}
-.opacity20 { opacity: 0.667}
-.opacity21 { opacity: 0.7}
-.opacity22 { opacity: 0.733}
-.opacity23 { opacity: 0.7667}
-.opacity24 { opacity: 0.8}
-.opacity25 { opacity: 0.833}
-.opacity26 { opacity: 0.8667}
-.opacity27 { opacity: 0.9}
-.opacity28 { opacity: 0.933}
-.opacity29 { opacity: 0.9667}
-.opacity30 { opacity: 0.99}
+.opacity0 { opacity: 0.30}
+.opacity1 { opacity: 0.36}
+.opacity2 { opacity: 0.42}
+.opacity3 { opacity: 0.48}
+.opacity4 { opacity: 0.54}
+.opacity5 { opacity: 0.60}
+.opacity6 { opacity: 0.66}
+.opacity7 { opacity: 0.72}
+.opacity8 { opacity: 0.78}
+.opacity9 { opacity: 0.84}
+.opacity10{ opacity: 0.90}
 
 .focus .bg { opacity: 1 }
-
 
 /** grid css */
 /* Remove the navbar's default margin-bottom and rounded borders */
@@ -129,6 +116,46 @@ footer {
     padding: 15px;
   }
   .row.content {height:auto;}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* small screen portrait */
+/*
+@media (max-width: 321px) {
+
+  .pull-right { 
+    float: none!important; 
+  }
+
+}
+
+
+/* small screen lanscape */
+/*
+@media (max-width: 480px) {
+
+  .pull-right {
+    float: none!important; 
+  }
+
 }
 
 /* --------------------------------------------------------

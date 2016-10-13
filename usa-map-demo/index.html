@@ -1,93 +1,50 @@
 <!doctype html>
-<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html class="nie"> <!--<![endif]-->
+<html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-<!--
-
-
-
-
- *** DO NOT COPY ANYTHING FROM THE SOURCE CODE OF THIS DEMO PAGE ! ***
-
-
- * CSSMap plugin - United States of America [ http://cssmapsplugin.com/get/usa ]
- * version: 5.5.2 - September 7th, 2016
- *
- * author: Łukasz Popardowski { Winston_Wolf }
- * license: http://cssmapsplugin.com/license
- * FAQ: http://cssmapsplugin.com/faq
- *
- * email: http://cssmapsplugin.com/contact
- * twitter: @CSSMapplugin
-
-
-
-
--->
-  <link rel="stylesheet" type="text/css" href="includes/style.css" media="all" />
-  <link rel="stylesheet" type="text/css" href="cssmap-usa/cssmap-usa.new.css" media="screen" />
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
   <title>CSSMap - United States of America</title>
-    <style>
-    /** grid css */
-    /* Remove the navbar's default margin-bottom and rounded borders */
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;}
-    }
-  </style>
 
-  <style type="text/css">
-   
-  </style>
 </head>
-<body id="demo-page-usa">
-<!-- begin grid -->
+<body>
+<!-- -- -- -- -- -- -- -- START COPY -- -- -- -- -- -- -- -- -- -->
+<link rel="stylesheet" type="text/css" href="includes/style.css" media="all" />
+<link rel="stylesheet" type="text/css" href="cssmap-usa/map.custom.css" media="screen" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-
-  
 <div class="container-fluid text-center">
-  <div class="row ">
 
-    <div class="col-sm-8 text-left">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 column">
       <h1>Welcome</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-      <hr>
-          
+
+      <select id="granteeSelect" onchange='granteeSelectChange(this.value)'>
+        <option value="">Select a Grantee</option>
+      </select>
+    </div>
+    <div class="col-xs-12 col-md-6 column">
+      
+      <div id="programInfo" class="well">
+        <h3 class="name">Program Information</h3>
+        <div class="description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </div>
+      </div>
+      <div id="granteeInfo" class="well">
+        <h3 class="name"></h3>
+        <div class="timeline">
+        </div>
+        <div class="description">
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /.row -->
+
+  <div class="row">
+    <div class="col-xs-12 col-md-8 column">
       <article class="page-content">
 
         <!-- SECTION DEMO -->
@@ -164,290 +121,27 @@
         </section>
         <!-- END OF THE SECTION DEMO -->
 
-
-
       </article>
+      
     </div>
-    <div class="col-sm-4 sidenav">
-      <div class="well">
+    <div class="col-xs-12 col-md-4 column">
+      
+      <div id="stateInfo" class="well">
         <h3 id="stateName"></h3>
-        <ul id="stateGrantees">
-
-        </ul>
+        <ul id="stateGrantees"></ul>
       </div>
 
     </div>
-  </div>
+  </div><!-- /.row -->
 
-  <div class="row">
-
-   
-    <div class="col-sm-12 ">
-      <div class="well">
-        <div id="granteeInfo">
-          <h3 class="name"></h3>
-          <div class="timeline">
-          </div>
-          <div class="description">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-
-<!-- end grid -->
-  <!--[if lt IE 9 ]><div id="ie-error">This demo page will not work correctly in your web browser!</div><![endif]-->
-
-
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cssmapsplugin.com/5/jquery.cssmap.min.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="https://cssmapsplugin.com/5/jquery.cssmap.min.js"></script>
+<script src="scripts/map.custom.js" type="text/javascript"></script>
+<!-- -- -- -- -- -- -- -- -- END COPY -- -- -- -- -- -- -- -- -- >
 
-$(document).ready(function(){
-
-
-
-var stateData = {
-  usa1: { name: 'Alabama', grantees: ['cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa2: { name: 'Alaska', grantees: ['cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa3: { name: 'Arizona', grantees: ['cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa4: { name: 'Arkansas', grantees: ['cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa5: { name: 'California', grantees: ['cafp', 'ccf', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'kfri', 'lac', 'mgr', 'nas', 'ncbh', 'norc', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'uom', 'ybu'] },
-  usa6: { name: 'Colorado', grantees: ['cafp', 'csi', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'pdfk', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa7: { name: 'Connecticut', grantees: ['aap', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'pri', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa8: { name: 'Delaware', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa9: { name: 'Florida', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa10: { name: 'Georgia', grantees: ['aap', 'cafp', 'csi', 'cdcf', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa11: { name: 'Hawaii', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa12: { name: 'Idaho', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa13: { name: 'Illinois', grantees: ['aap', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa14: { name: 'Indiana', grantees: ['', 'cafp', 'cdcf', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa15: { name: 'Iowa', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa16: { name: 'Kansas', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa17: { name: 'Kentucky', grantees: ['', 'cafp', 'cdcf', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa18: { name: 'Louisiana', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'pri', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa19: { name: 'Maine', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa20: { name: 'Maryland', grantees: ['bhsb', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa21: { name: 'Massachusetts', grantees: ['', 'cafp', 'csi', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa22: { name: 'Michigan', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa23: { name: 'Minnesota', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'uom', 'ybu'] },
-  usa24: { name: 'Mississippi', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa25: { name: 'Missouri', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa26: { name: 'Montana', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa27: { name: 'Nebraska', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa28: { name: 'Nevada', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa29: { name: 'New Hampshire', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'nhcf', 'pdfk', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa30: { name: 'New Jersey', grantees: ['', 'cafp', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'pdfk', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa31: { name: 'New Mexico', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'uonm', 'ybu'] },
-  usa32: { name: 'New York', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mfu', 'mgr', 'nas', 'ncbh', 'pdfk', 'pri', 'psurf', 'phope', 'abamf', 'csjksu', 'tyr', 'tri', 'tah', 'uisap', 'ybu'] },
-  usa33: { name: 'North Carolina', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'psurf', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa34: { name: 'North Dakota', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa35: { name: 'Ohio', grantees: ['', 'cafp', 'csi', 'cdcf', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'osu', 'pri', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa36: { name: 'Oklahoma', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa37: { name: 'Oregon', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'psurf', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa38: { name: 'Pennsylvania', grantees: ['', 'cafp', 'csi', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa39: { name: 'Rhode Island', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa40: { name: 'South Carolina', grantees: ['', 'cafp', 'csi', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa41: { name: 'South Dakota', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa42: { name: 'Tennessee', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa43: { name: 'Texas', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa44: { name: 'Utah', grantees: ['aap', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa45: { name: 'Vermont', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'nhcf', 'psurf', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa46: { name: 'Virginia', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa47: { name: 'Washington', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'psurf', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa48: { name: 'Washington DC', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa49: { name: 'West Virginia', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-  usa50: { name: 'Wisconsin', grantees: ['', 'cafp', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa51: { name: 'Wyoming', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-  usa52: { name: 'Puerto Rico', grantees: ['', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] }
-}
-
-
-var granteeData = {
-
-  aap: { name: "American Academy of Pediatrics", timeline: "10/1/2014-9/30/2018", description: "AAP is increasing utilization of SBIRT among pediatric providers serving adolescents. Key components include a learning collaborative to design and implement best practices, including quality measures, and development of an EQIPP® (Education in Quality Improvement and Pediatric Practice) module, which is an online tool to train pediatric practitioners."},
-
-  bhsb: { name: "Behavioral Health System Baltimore", timeline: "11/1/2015-12/31/2017", description: "BHSB is leading a multi-jurisdictional, multi-partner initiative to integrate adolescent SBIRT into pediatric primary settings and school-based health centers across Maryland." },
-
-  cafp: { name: "California Academy of Family Physicians", timeline: "9/1/15-8/31/18", description: "CAFP will increase practitioner awareness, competence, and confidence in identifying and addressing youth substance use, including alcohol and other drugs through partners from five national primary care associations that serve family physicians, nurse practitioners, physician assistants, general internists, and pediatricians." },
-
-  ccf: { name: "California Community Foundation ", timeline: "Grant 1 - 8/1/14-9/1/15, Grant 2 - 3/1/16 -2/28/18", description: "CCF had an initial grant to lead a planning a process to explore the feasibility of implementing SBIRT for adolescents in Los Angeles County. In their second grant, they are implementing SBIRT in 4 schools in LA County." },
-
-  csi: { name: "Center for Social Innovation", timeline: "12/1/2014-12/31/2017", description: "C4 is partnering with researchers, practitioners, and young people in recovery from substance use disorders to determine how peer-based interventions can be effective at motivating change and promoting healthy choices for adolescents." },
-
-  cdcf: { name: "CDC Foundation:", timeline: "01/01/16 - 12/31/218", description: "CDC will conduct a comprehensive, regional substance use prevention and sexual risk behavior reduction program for communities with high substance use and/or HIV/STD rates among youth.  Their school-centered approach will focus on four major activities: substance use and HIV prevention education, access to key health services, promotion of safe and supportive school and community climates, and monitoring and evaluation." },
-
-  chcs: { name: "Center for Health Care Strategies", timeline: "Grant 1: 4/1/15-3/31/16, Grant 2: 1/1/16-12/31/18", description: "Grant 1: CHCS  convened a small group consultation (SGC), to facilitate the identification of opportunities for and challenges to the implementation of a publicly financed primary care approach to the prevention of and early intervention for youth substance use disorders. Grant 2: CHCS and ACAP will conduct a learning collaborative to support a target of five participating plans in developing and implementing a PCP training program on the use of SBIRT." },
-
-  chc: { name: "Children’s Hospital Corp", timeline: "12/1/14-11/30/18", description: "CHC is conducting a research study to develop a set of outcome measures for real-world clinical settings to assess the short term impact of SBIRT. The research is testing the efficacy of SBIRT and the measures for a particularly vulnerable group: youth with chronic medical conditions." },
-
-  cadca: { name: "Community Anti-Drug Coalitions of America", timeline: "7/1/15 – 6/30/16", description: "CADCA will create a planning process to develop, pilot, and evaluate an approach to provide training and technical assistance to community coalitions to support the development and implementation of SBIRT in their communities." },
-
-  ccat: { name: "Community Catalyst", timeline: "12/1/13-11/30/16", description: "CC is developing consumer-led advocacy campaigns in six states (GA, MA, NY, NJ, OH, WI) to enact state policy change to increase access to SBIRT by improving reimbursement and expanding the settings/professionals that can provide it, with a focus on peer approaches." },
-
-  facadd: { name: "Facing Addiction", timeline: "4/1/16 – 3/31/18", description: "Facing Addiction will build and organize a grassroots advocacy movement of those affected by addiction to advance public health responses, including Screening, Brief Intervention, and Referral to Treatment (SBIRT)." },
-
-  fract: { name: "Fractured Atlas", timeline: "10/1/14-9/30/15", description: "Fractured Atlas is producing and conducting community discussion forums for Generation Found, a documentary film project about adolescents in recovery and the pediatric nature of the onset of addiction." },
-
-  fin: { name: "Frameworks Institute", timeline: "1/1/15-4/30/16", description: "FrameWorks will explore how to effectively communicate with the members of the public, practitioners, and policymakers about youth substance use and what it takes to improve outcomes for young people." },
-
-  gih: { name: "Grantmakers in Health", timeline: "8/1/15 – 7/31/16", description: "GIH will convene behavioral health funders, with a particular emphasis on SUD, as part of the GIH Fall Forum in Washington, DC to illuminate philanthropy’s current assets, gaps, and barriers to scaling behavioral health efforts as well as opportunities for partnering with different sectors and government." },
-
-  kfri: { name: "Kaiser Foundation Research Institute", timeline: "2/1/2016-1/31/2019", description: "KP will develop predictive statistical models – “risk profiles” – of clinical and demographic characteristics which can be used by health systems and other youth-serving organizations to identify children and adolescents at greatest risk of developing substance use problems, for targeted prevention and early intervention efforts, including SBIRT." },
-
-  lac: { name: "Legal Action Center ", timeline: "12/1/14-11/30/17", description: "LAC is analyzing the implementation of the Affordable Care Act and the Mental Health Parity and Addiction Equity Act, identify opportunities to improve access to preventative services, and provide technical assistance to state agencies, insurers, and advocates to improve policy and practice to expand access to prevention services." },
-
-  mfu: { name: "Mentor Foundation USA", timeline: "11/1/15-7/31/16", description: "Mentor Foundation USA will create an interactive “multi-media” version of their current Shattering the Myths model, called STM 2.0, that incorporates messages for prevention specifically designed to counteract the misinformation (myths) adolescents have about drugs and alcohol. Messages will be framed to promote the benefits of prevention behaviors." },
-
-  mgr: { name: "Mosaic Group", timeline: "9/1/14-8/31/16", description: "Mosaic Group is developing an Adolescent SBIRT checklist to support effective implementation of SBIRT for Foundation grantees and is providing technical assistance to implement the checklist with three grantees (National Council, School Based Health Alliance, YouthBuild)." },
-
-  nas: { name: "National Academy of Sciences", timeline: "7/1/15-6/30/17", description: "The National Academies will continue to coordinate the Forum on Promoting Children's Cognitive, Affective, and Behavioral Health (C-CAB Forum). The Forum will consist of scientists, practitioners, government officials, and staff from private foundations. The goal is to advance an agenda focused on implementation that promote the mental, emotional, and behavioral health of adolescents." },
-
-  ncbh: { name: "National Council of Behavioral Health ", timeline: "4/1/2014-3/31/2017", description: "Grant 1 - The National Council will implement a project to pilot SBIRT in 30 CBHOs in five states. Utilizing a competitive application process, the National Council will identify the agencies who will work in partnership with their respective State Associations to implement their SBIRT projects and conduct advocacy to establish Medicaid reimbursement for SBIRT." },
-
-  norc: { name: "National Opinion Research Council", timeline: "10/1/2014-9/30/2017", description: "NORC is developing an online interactive SBIRT curriculum for social work and nursing schools." },
-
-  nhcf: { name: "New Hampshire Charitable Foundation", timeline: "1/1/2014-6/30/2017", description: " NHCF is expanding SBIRT for adolescents in New Hampshire in community health settings and advocate for state policy changes to sustain SBIRT financing." },
-
-  osu: { name: "Ohio State University", timeline: "7/1/14-6/30/17", description: "OSU is helping to establish a national Higher Education Center on Alcohol and Drug Prevention and Recovery, to operate as an information dissemination center to promote SBIRT and other evidence-based strategies to address alcohol and other drug use on college campuses. They have developed ScreenU, a drug misuse screening software, being piloted on college campuses across the country." },
-
-  pdfk: { name: "Partnership for Drug Free Kids", timeline: "7/1/14-6/30/16", description: "The Partnership is developing, piloting, and evaluating an approach to engage parents in SBIRT programs and build a national peer support network of parents to address adolescent substance use." },
-
-  pri: { name: "Policy Research Inc.", timeline: "9/1/14-8/31/17", description: "PRI is partnering with the National Center for Mental Health and Juvenile Justice to develop and implement an SBIRT approach for youth involved in the juvenile justice system." },
-
-  psurf: { name: "Portland State University - Reclaiming Futures", timeline: "9/1/2014-6/30/2018", description: "Reclaiming Futures is incorporating SBIRT into the model to expand early intervention and diversion opportunities for court-involved youth." },
-
-  phope: { name: "Project Hope", timeline: "3/1/16 – 2/28/17", description: "Health Affairs will conduct a briefing to highlight the issues in the behavioral health journal and discuss how policymakers and other stakeholders can promote behavioral health, health policy, and health systems improvement. This briefing will be held in Washington, DC and will include key stakeholders, including members of Congress and the Administration—as well as other health and health care stakeholders." },
-
-  sbha: { name: "School Based Health Alliance", ended: true, timeline: "6/1/2014-5/31/2016", description: "SBHA conducted a two-year pilot project to provide adolescent-specific SBIRT training and technical assistance to 10 school-based health clinics" },
-
-  abamf: { name: "The American Board of Addiction Medicine Foundation", timeline: "11/1/13-10/31/16", description: " ABAM is establishing the National Center for Physician Training in Addiction Medicine, to educate and train physicians in addiction medicine and prevention/early intervention of adolescent substance use." },
-
-  csjksu: { name: "The Center for Sustainable Journalism –Kennesaw State University ", timeline: "4/1/15-3/3/16", description: "KSURSF is supporting the Center for Sustainable Journalism to develop media and communication materials to increase awareness among funders, policymakers and practitioners about adolescent substance use prevention and foster care and how the strategic initiative goals can promote opportunities and reduce barriers for these young people." },
-
-  tyr: { name: "Transforming Youth Recovery", timeline: "4/1/15-3/3/16", description: "TYR is conducting a strategic planning process to launch Facing Addiction by: 1) conducting a public awareness campaign to build a coalition of stakeholders; 2) developing a research-based marketing and fundraising plan to motivate giving using tailored messaging; and 3) creating a social media campaign." },
-
-  tri: { name: "Treatment Research Institute", timeline: "1/1/14-8/31/17", description: "TRI is piloting an SBIRT approach in four New York City metro area schools utilizing a computerized screening protocol and tailored brief intervention." },
-
-
-  tah: { name: "Trust for America’s Health", timeline: "10/1/14-9/30/15", description: "TFAH is conducting an expert convening to identify best practices and emerging models related to primary prevention and early intervention, and developing a set of indicators to serve as an agenda for advocates to pursue in their states." },
-
-  uisap: { name: "UCLA Integrated Substance Abuse Programs", timeline: "9/1/15-8/31/18", description: "UCLA will provide training and technical assistance to grantees." },
-
-  uom: { name: "University of Minnesota", timeline: "7/1/14-6/30/17", description: "UMN is partnering with Kaiser Permanente to conduct a randomized controlled study of a four-session intervention model for teens and parents  that has been adapted for adolescents referred from schools and pediatric settings. This project is also testing a group intervention format." },
-
-  uonm: { name: "University of New Mexico", timeline: "9/1/2014-8/31/2017", description: "UNM’s Center on Alcoholism, Substance Abuse, and Addictions is implementing SBIRT in school-based health clinics throughout the state of New Mexico." },
-
-  ybu: { name: "YouthBuild, USA", timeline: "4/1/2014-9/30/2017", description: " YouthBuild, USA is implementing an SBIRT model in community-based YouthBuild programs." }
-
-
-
-
-
-
-}
-
-// CSSMap;
-$("#map-usa").CSSMap({
-  "size": 1450,
-  "tooltips": "sticky",
-  "responsive": "auto",
-  "tapOnce": true,
-  "onLoad": function(e){
-    // unhide map (hiding prevents loading untidyness)
-    jQuery("#map-usa").show();
-    for (var stateKey in stateData) {
-      // loop grantees in each state
-      var count = stateData[stateKey].grantees.length - 10;
-      ////////////////////////////var newOpacity = count / 13;
-      //////////////////////////$( "." + stateKey + " .bg").css( 'opacity', newOpacity );
-      $( "." + stateKey + " .bg").addClass( 'opacity' + stateData[stateKey].grantees.length );
-    }
-
-  },
-  "onClick": function(e){
-
-    var stateCode = e[0].classList[0];
-    var stateInfo = stateData[stateCode];
-    $("#stateName").html(stateInfo['name']);
-    
-    var granteesUl = '';
-    for (var i = 0, len = stateInfo.grantees.length; i < len; i++) {
-      for (var key in granteeData) {
-        if (stateInfo.grantees[i] == key) {
-          granteesUl = granteesUl + '<li><a class="granteeLink" data-key="'+key+'" href="#' + key + '">' + granteeData[key]['name'] + '</a></li>';
-        }
-      }     
-    }
-    $("#stateGrantees").html(granteesUl);
-
-  },
-  "multipleClick": {
-    "enable": false,
-    //"searchUrl": "search.php",
-    //"searchLink": "Search",
-    //"searchLinkVar": "region",
-    "separator": "+",
-    "hideSearchLink": true,
-    "clicksLimit": 0
-  }
-});
-// END OF THE CSSMap;
-
-
-  function hashCheck() {
-    var hashAttr = '';
-
-    if(window.location.hash) {
-      hashAttr = window.location.hash.replace(/[^a-z0-9]/gi, '');
-    } 
-
-    // loop all grantees
-    for (var key in granteeData) {
-      // if found grantee, then pop its data into granteeInfo  
-      if (hashAttr == key) {
-        //console.log(granteeData[key]['name']);
-      
-        $("#granteeInfo .name").html(granteeData[key]['name']);
-        $("#granteeInfo .timeline").html(granteeData[key]['timeline']);
-        $("#granteeInfo .description").html(granteeData[key]['description']);
-
-        // highlight states that contain this grantee
-
-        for (var stateKey in stateData) {
-         
-          // loop grantees in each state
-          var foundIt = false;
-          for (var i3 = 0, len3 = stateData[stateKey].grantees.length; i3 < len3; i3++) {
-            if (stateData[stateKey].grantees[i3] == hashAttr) {
-              foundIt = true
-            }
-          }
-
-          if (foundIt) {
-            console.log('highlight state: ' + stateKey);
-            $( "." + stateKey ).addClass( 'active-region' );
-          }
-          else {
-            if ($( "." + stateKey ).hasClass( 'active-region' )) {
-              console.log('hide state: ' + stateKey);
-              $( "." + stateKey ).removeClass( 'active-region' );
-            }
-          }
-        }   
-      }
-    }
-  }
-
-  //hashCheck();
-  window.onhashchange = hashCheck;
-
-
-
-});
-</script>
 </body>
 </html>
