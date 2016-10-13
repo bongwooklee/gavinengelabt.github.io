@@ -30,8 +30,10 @@
 
 -->
   <link rel="stylesheet" type="text/css" href="includes/style.css" media="all" />
-  <link rel="stylesheet" type="text/css" href="cssmap-usa/cssmap-usa.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="cssmap-usa/cssmap-usa.new.css" media="screen" />
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 
   <title>CSSMap - United States of America</title>
     <style>
@@ -70,14 +72,7 @@
   </style>
 
   <style type="text/css">
-    #stateGrantees {
-      padding-left: 20px;
-    }
-    #stateGrantees li {
-      text-align: left;
-      list-style-type: disc;
-
-    }
+   
   </style>
 </head>
 <body id="demo-page-usa">
@@ -92,10 +87,6 @@
       <h1>Welcome</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
       <hr>
-      <ul>
-        <li>* show PR?</li>
-        <li>* highlight the state that is based in, example: National Council of Behavioral Health, do we highlight Washington DC?
-      </ul>
           
       <article class="page-content">
 
@@ -368,17 +359,14 @@ $("#map-usa").CSSMap({
   "onLoad": function(e){
     // unhide map (hiding prevents loading untidyness)
     jQuery("#map-usa").show();
-
-    /** apply opacity to each state based on count of grantees */
     for (var stateKey in stateData) {
-     
       // loop grantees in each state
       var count = stateData[stateKey].grantees.length - 10;
-      var newOpacity = count / 13;
-      $( "." + stateKey + " .bg").css( 'opacity', newOpacity );
-
-      //console.log(stateData[stateKey].name+' has grantee count '+stateData[stateKey].grantees.length);
+      ////////////////////////////var newOpacity = count / 13;
+      //////////////////////////$( "." + stateKey + " .bg").css( 'opacity', newOpacity );
+      $( "." + stateKey + " .bg").addClass( 'opacity' + stateData[stateKey].grantees.length );
     }
+
   },
   "onClick": function(e){
 
@@ -408,7 +396,6 @@ $("#map-usa").CSSMap({
   }
 });
 // END OF THE CSSMap;
-
 
 
   function hashCheck() {
