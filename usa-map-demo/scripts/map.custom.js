@@ -102,7 +102,7 @@ $(document).ready(function(){
   // insert markers
   for (var key in granteeData) {
     $('#map-markers .cssmap-pins').append(
-      '<li id="marker-' + key + '" class="cssmap-pin" data-cssmap-coords="' + granteeData[key]['coords'] + '" style="display:none;"> <div class="cssmap-tooltip-content">'+granteeData[key]['name'] +'</div> <a href="#' + key + ' " class="cssmap-marker"><img src="includes/pin.png" width="20" height="25" alt="pin"/></a>  </li>'
+      '<li id="marker-' + key + '" class="cssmap-pin" data-cssmap-coords="' + granteeData[key]['coords'] + '" style=";"> <div class="cssmap-tooltip-content">'+granteeData[key]['name'] +'</div> <a href="#' + key + ' " class="cssmap-marker"><img src="includes/pin.png" width="20" height="25" alt="pin"/></a>  </li>'
     );  
   }  
 
