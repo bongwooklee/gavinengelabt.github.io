@@ -1,65 +1,64 @@
-$(document).ready(function(){
 
   var minGrantees = 999;
   var maxGrantees = 0;
 
-  var stateData = {
-    usa1: { name: 'Alabama', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa2: { name: 'Alaska', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa3: { name: 'Arizona', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa4: { name: 'Arkansas', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa5: { name: 'California', grantees: ['chcs', 'cafp', 'ccf', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'kfri', 'lac', 'mgr', 'nas', 'ncbh', 'norc', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'uom', 'ybu'] },
-    usa6: { name: 'Colorado', grantees: ['chcs', 'cafp', 'csi', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'pdfk', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa7: { name: 'Connecticut', grantees: ['aap', 'chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'pri', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa8: { name: 'Delaware', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa9: { name: 'Florida', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa10: { name: 'Georgia', grantees: ['aap', 'chcs', 'cafp', 'csi', 'cdcf', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa11: { name: 'Hawaii', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa12: { name: 'Idaho', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa13: { name: 'Illinois', grantees: ['aap', 'chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa14: { name: 'Indiana', grantees: ['chcs', 'cafp', 'cdcf', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa15: { name: 'Iowa', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa16: { name: 'Kansas', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa17: { name: 'Kentucky', grantees: ['chcs', 'cafp', 'cdcf', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa18: { name: 'Louisiana', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'pri', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa19: { name: 'Maine', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa20: { name: 'Maryland', grantees: ['bhsb', 'chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa21: { name: 'Massachusetts', grantees: ['chcs', 'chc', 'cafp', 'csi', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa22: { name: 'Michigan', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa23: { name: 'Minnesota', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'uom', 'ybu'] },
-    usa24: { name: 'Mississippi', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa25: { name: 'Missouri', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa26: { name: 'Montana', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa27: { name: 'Nebraska', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa28: { name: 'Nevada', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa29: { name: 'New Hampshire', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'nhcf', 'pdfk', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa30: { name: 'New Jersey', grantees: ['chcs', 'cafp', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'pdfk', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa31: { name: 'New Mexico', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'uonm', 'ybu'] },
-    usa32: { name: 'New York', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mfu', 'mgr', 'nas', 'ncbh', 'pdfk', 'pri', 'psurf', 'phope', 'abamf', 'csjksu', 'tyr', 'tri', 'tah', 'uisap', 'ybu'] },
-    usa33: { name: 'North Carolina', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'psurf', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa34: { name: 'North Dakota', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa35: { name: 'Ohio', grantees: ['chcs', 'cafp', 'csi', 'cdcf', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'osu', 'pri', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa36: { name: 'Oklahoma', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa37: { name: 'Oregon', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'psurf', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa38: { name: 'Pennsylvania', grantees: ['chcs', 'cafp', 'csi', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa39: { name: 'Rhode Island', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa40: { name: 'South Carolina', grantees: ['chcs', 'cafp', 'csi', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa41: { name: 'South Dakota', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa42: { name: 'Tennessee', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa43: { name: 'Texas', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa44: { name: 'Utah', grantees: ['aap', 'chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa45: { name: 'Vermont', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'nhcf', 'psurf', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa46: { name: 'Virginia', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa47: { name: 'Washington', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'psurf', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa48: { name: 'Washington DC', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa49: { name: 'West Virginia', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
-    usa50: { name: 'Wisconsin', grantees: ['chcs', 'cafp', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa51: { name: 'Wyoming', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
-    usa52: { name: 'Puerto Rico', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] }
+  stateData = {
+    al: { name: 'Alabama', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    ak: { name: 'Alaska', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    az: { name: 'Arizona', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    ar: { name: 'Arkansas', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    ca: { name: 'California', grantees: ['chcs', 'cafp', 'ccf', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'kfri', 'lac', 'mgr', 'nas', 'ncbh', 'norc', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'uom', 'ybu'] },
+    co: { name: 'Colorado', grantees: ['chcs', 'cafp', 'csi', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'pdfk', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    ct: { name: 'Connecticut', grantees: ['aap', 'chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'pri', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    de: { name: 'Delaware', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    fl: { name: 'Florida', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    ga: { name: 'Georgia', grantees: ['aap', 'chcs', 'cafp', 'csi', 'cdcf', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    hi: { name: 'Hawaii', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    id: { name: 'Idaho', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    il: { name: 'Illinois', grantees: ['aap', 'chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    in: { name: 'Indiana', grantees: ['chcs', 'cafp', 'cdcf', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    ia: { name: 'Iowa', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    ks: { name: 'Kansas', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    ky: { name: 'Kentucky', grantees: ['chcs', 'cafp', 'cdcf', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    la: { name: 'Louisiana', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'pri', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    me: { name: 'Maine', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    md: { name: 'Maryland', grantees: ['bhsb', 'chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    ma: { name: 'Massachusetts', grantees: ['chcs', 'chc', 'cafp', 'csi', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    mi: { name: 'Michigan', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    mn: { name: 'Minnesota', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'uom', 'ybu'] },
+    ms: { name: 'Mississippi', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    mo: { name: 'Missouri', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    mt: { name: 'Montana', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    ne: { name: 'Nebraska', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    nv: { name: 'Nevada', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    nh: { name: 'New Hampshire', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'nhcf', 'pdfk', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    nj: { name: 'New Jersey', grantees: ['chcs', 'cafp', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'pdfk', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    nm: { name: 'New Mexico', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'uonm', 'ybu'] },
+    ny: { name: 'New York', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mfu', 'mgr', 'nas', 'ncbh', 'pdfk', 'pri', 'psurf', 'phope', 'abamf', 'csjksu', 'tyr', 'tri', 'tah', 'uisap', 'ybu'] },
+    nc: { name: 'North Carolina', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'psurf', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    nd: { name: 'North Dakota', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    oh: { name: 'Ohio', grantees: ['chcs', 'cafp', 'csi', 'cdcf', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'osu', 'pri', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    ok: { name: 'Oklahoma', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    or: { name: 'Oregon', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'psurf', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    pa: { name: 'Pennsylvania', grantees: ['chcs', 'cafp', 'csi', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    ri: { name: 'Rhode Island', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    sc: { name: 'South Carolina', grantees: ['chcs', 'cafp', 'csi', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    sd: { name: 'South Dakota', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    tn: { name: 'Tennessee', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    tx: { name: 'Texas', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    ut: { name: 'Utah', grantees: ['aap', 'chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    vt: { name: 'Vermont', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'nhcf', 'psurf', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    va: { name: 'Virginia', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    wa: { name: 'Washington', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'psurf', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    dc: { name: 'Washington DC', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'ncbh', 'phope', 'sbha', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    wv: { name: 'West Virginia', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap', 'ybu'] },
+    wi: { name: 'Wisconsin', grantees: ['chcs', 'cafp', 'cadca', 'ccat', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    wy: { name: 'Wyoming', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
+    pr: { name: 'Puerto Rico', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] }
   }
 
 
-  var granteeData = {
+  granteeData = {
     aap: { coords: "1005,440", name: "American Academy of Pediatrics", timeline: "10/1/2014 - 9/30/2018", description: "AAP is increasing utilization of SBIRT among pediatric providers serving adolescents. Key components include a learning collaborative to design and implement best practices, including quality measures, and development of an EQIPP® (Education in Quality Improvement and Pediatric Practice) module, which is an online tool to train pediatric practitioners."},
     bhsb: { coords: "1310,490", name: "Behavioral Health System Baltimore", timeline: "11/1/2015 - 12/31/2017", description: "BHSB is leading a multi-jurisdictional, multi-partner initiative to integrate adolescent SBIRT into pediatric primary settings and school-based health centers across Maryland." },
     cafp: { coords: "250,650", name: "California Academy of Family Physicians", timeline: "9/1/15 - 8/31/18", description: "CAFP will increase practitioner awareness, competence, and confidence in identifying and addressing youth substance use, including alcohol and other drugs through partners from five national primary care associations that serve family physicians, nurse practitioners, physician assistants, general internists, and pediatricians." },
@@ -98,6 +97,8 @@ $(document).ready(function(){
     uonm: { coords: "1,1", name: "University of New Mexico", timeline: "9/1/2014 - 8/31/2017", description: "UNM’s Center on Alcoholism, Substance Abuse, and Addictions is implementing SBIRT in school-based health clinics throughout the state of New Mexico." },
     ybu: { coords: "780,700", name: "YouthBuild, USA", timeline: "4/1/2014 - 9/30/2017", description: " YouthBuild, USA is implementing an SBIRT model in community-based YouthBuild programs." }
   }
+
+$(document).ready(function(){
 
   // insert markers
   for (var key in granteeData) {
@@ -240,3 +241,161 @@ function granteeSelectChange(value) {
   window.location.hash = value;
 }
 ***/
+
+/** leaflet */
+// replace density with grantees
+for (var key in statesData.features) {
+    console.log('fixing'+key);
+    var code = statesData.features[key].properties.code;
+    var granteeCount = stateData[code].grantees.length;
+    statesData.features[key].properties.density = granteeCount;
+}   
+
+
+
+
+    var map = L.map('map', { zoomControl:true, scrollWheelZoom: false }).setView([37.8, -96], 4);
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+            '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        id: 'mapbox.light'
+    }).addTo(map);
+
+
+    // control that shows state info on hover
+    var info = L.control();
+
+    info.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'info');
+        this.update();
+        return this._div;
+    };
+
+    info.update = function (props) {
+        this._div.innerHTML = '<h4>Grantees per State</h4>' +  (props ?
+            '<b>' + props.name + '</b><br />' + props.density + ' programs'
+            : 'Hover over a state');
+    };
+
+    info.addTo(map);
+
+
+    // get color depending on population density value
+    function getColor(d) {
+        return d > 26 ? '#800026' :
+                d > 24  ? '#BD0026' :
+                d > 22  ? '#E31A1C' :
+                d > 20 ? '#FC4E2A' :
+                d > 18   ? '#FD8D3C' :
+                d > 16   ? '#FEB24C' :
+                d > 14   ? '#FED976' :
+                            '#FFEDA0';
+    }
+
+    function style(feature) {
+        return {
+            weight: 2,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.7,
+            fillColor: getColor(feature.properties.density)
+        };
+    }
+
+    function highlightFeature(e) {
+        var layer = e.target;
+
+        layer.setStyle({
+            weight: 5,
+            color: '#666',
+            dashArray: '',
+            fillOpacity: 0.7
+        });
+
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            layer.bringToFront();
+        }
+        info.update(layer.feature.properties);
+    }
+
+    var geojson;
+
+    function resetHighlight(e) {
+        geojson.resetStyle(e.target);
+        info.update();
+    }
+
+    function zoomToFeature(e) {
+        //map.fitBounds(e.target.getBounds());
+    //console.log(e.target.feature.properties.code);
+    if (typeof e.target.feature.properties !== 'undefined') {
+      window.location.hash = e.target.feature.properties.code;
+
+
+      ///e.target.setStyle({fillColor: '#0000FF'});
+
+      var stateCode = e.target.feature.properties.code;//e[0].classList[0];
+      var stateInfo = stateData[stateCode];
+      $("#stateName").html(stateInfo['name']);
+      
+      var granteesUl = '';
+      for (var i = 0, len = stateInfo.grantees.length; i < len; i++) {
+        for (var key in granteeData) {
+          if (stateInfo.grantees[i] == key) {
+            granteesUl = granteesUl + '<li><a class="granteeLink" data-key="'+key+'" href="#' + key + '">' + granteeData[key]['name'] + '</a></li>';
+          }
+        }     
+      }
+      $("#stateGrantees").html(granteesUl);
+      $("#stateInfo").show();
+
+
+    }
+
+        console.log(e.target.feature);
+
+    }
+
+    function onEachFeature(feature, layer) {
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+            click: zoomToFeature
+        });
+    }
+
+    geojson = L.geoJson(statesData, {
+        style: style,
+        onEachFeature: onEachFeature
+    }).addTo(map);
+
+    //map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
+
+
+    var legend = L.control({position: 'bottomright'});
+
+    legend.onAdd = function (map) {
+
+        var div = L.DomUtil.create('div', 'info legend'),
+            grades = [0, 14, 16, 18, 20, 22, 24, 26],
+            labels = [],
+            from, to;
+
+        for (var i = 0; i < grades.length; i++) {
+            from = grades[i];
+            to = grades[i + 1];
+
+            labels.push(
+                '<i style="background:' + getColor(from + 1) + '"></i> ' +
+                from + (to ? '&ndash;' + to : '+'));
+        }
+
+        div.innerHTML = labels.join('<br>');
+        return div;
+    };
+
+    legend.addTo(map);
