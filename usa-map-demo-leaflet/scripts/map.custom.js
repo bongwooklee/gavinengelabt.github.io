@@ -222,17 +222,21 @@ $(document).ready(function(){
   window.onhashchange = hashCheck;
 
   /* add grantees to select */
+  /***
   for (var key in granteeData) {
     $('#granteeSelect').append($('<option>', { 
         value: key,
         text : granteeData[key].name 
     }));
   }   
+  ***/
 
 
 });
 
 /** handle grantee select updates */
+/***
 function granteeSelectChange(value) {
   window.location.hash = value;
 }
+***/
