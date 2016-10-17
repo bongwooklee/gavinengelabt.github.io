@@ -297,10 +297,10 @@ for (var key in statesData.features) {
 
     function style(feature) {
         return {
-            weight: 2,
+            weight: 1,
             opacity: 1,
             color: 'white',
-            dashArray: '3',
+            dashArray: '0',
             fillOpacity: 0.7,
             fillColor: getColor(feature.properties.density)
         };
@@ -310,7 +310,7 @@ for (var key in statesData.features) {
         var layer = e.target;
 
         layer.setStyle({
-            weight: 5,
+            weight: 2,
             color: '#666',
             dashArray: '',
             fillOpacity: 0.7
