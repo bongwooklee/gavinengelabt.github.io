@@ -107,7 +107,7 @@ $(document).ready(function(){
     );  
   }  
 
-
+/***
   // CSSMap;
   $("#map-usa").CSSMap({
     "size": 1450,
@@ -130,7 +130,7 @@ $(document).ready(function(){
         // loop grantees in each state
         pct = (stateData[stateKey].grantees.length - minGrantees) / (maxGrantees - minGrantees)
         pct = Math.ceil(pct * 10);
-        $( "." + stateKey + " .bg").addClass( 'opacity' + pct );
+        $( ".state-" + stateKey + " .bg").addClass( 'opacity' + pct );
       }
 
     },
@@ -171,7 +171,7 @@ $(document).ready(function(){
     }
   });
   // END OF THE CSSMap;
-
+***/
   function hashCheck() {
     var hashAttr = '';
 
@@ -179,13 +179,15 @@ $(document).ready(function(){
       hashAttr = window.location.hash.replace(/[^a-z0-9]/gi, '');
     } 
 
+
     $("#granteeInfo").hide();
     $("#programInfo").show();
-
     // loop all grantees
     for (var key in granteeData) {
       // if found grantee, then pop its data into granteeInfo  
       if (hashAttr == key) {
+            
+
         $("#granteeInfo .name").html(granteeData[key]['name']);
         $("#granteeInfo .timeline").html(granteeData[key]['timeline']);
         $("#granteeInfo .description").html(granteeData[key]['description']);
@@ -198,23 +200,29 @@ $(document).ready(function(){
 
         // highlight states that contain this grantee
         for (var stateKey in stateData) {
-         
           // loop grantees in each state
-          var foundIt = false;
+          ////var foundIt = false;
+          var fillOpacity = .1;
           for (var i3 = 0, len3 = stateData[stateKey].grantees.length; i3 < len3; i3++) {
             if (stateData[stateKey].grantees[i3] == hashAttr) {
-              foundIt = true
+              ////foundIt = true
+              fillOpacity = .7;
             }
           }
 
+          /***
           if (foundIt) {
-            $( "." + stateKey ).addClass( 'active-region' );
+            $( ".state-" + stateKey  ).attr( 'data-active', 'true' );
           }
           else {
-            if ($( "." + stateKey ).hasClass( 'active-region' )) {
-              $( "." + stateKey ).removeClass( 'active-region' );
+            $( ".state-" + stateKey  ).attr( 'data-active', 'false' );
+         
+            if ($( ".state-" + stateKey ).attr( 'data-active' )) {
+              $( ".state-" + stateKey ).removeAttr( 'data-active' );
             }
-          }
+          }***/
+          $( ".state-" + stateKey  ).attr( 'fill-opacity', fillOpacity );
+
         }   
       }
     }
@@ -261,8 +269,6 @@ for (var key in statesData.features) {
     var granteeCount = stateData[code].grantees.length;
     statesData.features[key].properties.density = granteeCount;
 }   
-
-
 
 
     var map = L.map('map', { zoomControl:true, scrollWheelZoom: false }).setView([37.8, -96], 4);
@@ -379,6 +385,8 @@ for (var key in statesData.features) {
     }
 
     function onEachFeature(feature, layer) {
+        layer.setStyle({className: 'state-' + feature.properties.code });
+        
         layer.on({
             mouseover: highlightFeature,
             mouseout: resetHighlight,
@@ -386,12 +394,13 @@ for (var key in statesData.features) {
         });
     }
 
+    // add state borders
     geojson = L.geoJson(statesData, {
         style: style,
         onEachFeature: onEachFeature
     }).addTo(map);
 
-    //map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
+    ///map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
 
 
     var legend = L.control({position: 'bottomright'});
