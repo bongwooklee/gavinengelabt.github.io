@@ -242,10 +242,21 @@ function granteeSelectChange(value) {
 }
 ***/
 
+function showAllGrantees() {
+    $("#stateName").html("All Grantees");
+
+    var granteesUl = '';
+    for (var key in granteeData) {
+        granteesUl = granteesUl + '<li><a class="granteeLink" data-key="'+key+'" href="#' + key + '">' + granteeData[key]['name'] + '</a></li>';
+    }     
+    $("#stateGrantees").html(granteesUl);
+    $("#stateInfo").show();
+}
+showAllGrantees(); // on default load
+
 /** leaflet */
 // replace density with grantees
 for (var key in statesData.features) {
-    console.log('fixing'+key);
     var code = statesData.features[key].properties.code;
     var granteeCount = stateData[code].grantees.length;
     statesData.features[key].properties.density = granteeCount;
@@ -255,7 +266,8 @@ for (var key in statesData.features) {
 
 
     var map = L.map('map', { zoomControl:true, scrollWheelZoom: false }).setView([37.8, -96], 4);
-
+    map.doubleClickZoom.disable();
+    
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
         maxZoom: 18,
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
@@ -329,35 +341,41 @@ for (var key in statesData.features) {
         info.update();
     }
 
+
     function zoomToFeature(e) {
-        //map.fitBounds(e.target.getBounds());
-    //console.log(e.target.feature.properties.code);
-    if (typeof e.target.feature.properties !== 'undefined') {
-      window.location.hash = e.target.feature.properties.code;
+        ///map.fitBounds(e.target.getBounds());
+        ///console.log(e.target.feature.properties.code);
+        if (typeof e.target.feature.properties !== 'undefined') {
+          window.location.hash = e.target.feature.properties.code;
 
 
-      ///e.target.setStyle({fillColor: '#0000FF'});
+          ///e.target.setStyle({fillColor: '#0000FF'});
 
-      var stateCode = e.target.feature.properties.code;//e[0].classList[0];
-      var stateInfo = stateData[stateCode];
-      $("#stateName").html(stateInfo['name']);
-      
-      var granteesUl = '';
-      for (var i = 0, len = stateInfo.grantees.length; i < len; i++) {
-        for (var key in granteeData) {
-          if (stateInfo.grantees[i] == key) {
-            granteesUl = granteesUl + '<li><a class="granteeLink" data-key="'+key+'" href="#' + key + '">' + granteeData[key]['name'] + '</a></li>';
+          var stateCode = e.target.feature.properties.code;///e[0].classList[0];
+          var stateInfo = stateData[stateCode];
+
+          if ( $("#stateName").html() == stateInfo['name']){
+              // show All Grantees
+              showAllGrantees();
           }
-        }     
-      }
-      $("#stateGrantees").html(granteesUl);
-      $("#stateInfo").show();
+          else {
+              // show only grantees for one state
+              $("#stateName").html(stateInfo['name']);
+              
+              var granteesUl = '';
+              for (var i = 0, len = stateInfo.grantees.length; i < len; i++) {
+                for (var key in granteeData) {
+                  if (stateInfo.grantees[i] == key) {
+                    granteesUl = granteesUl + '<li><a class="granteeLink" data-key="'+key+'" href="#' + key + '">' + granteeData[key]['name'] + '</a></li>';
+                  }
+                }     
+              }
+              $("#stateGrantees").html(granteesUl);
+              $("#stateInfo").show();
+          }
+        }
 
-
-    }
-
-        console.log(e.target.feature);
-
+        //console.log(e.target.feature);
     }
 
     function onEachFeature(feature, layer) {
