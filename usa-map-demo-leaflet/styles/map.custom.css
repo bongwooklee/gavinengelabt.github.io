@@ -1,0 +1,71 @@
+path[data-active="false"] {
+    background-color: yellow;
+}
+#map-row1 { /* */ }
+#map-row2 { /* */ }
+
+/*#map-usa {margin: 0;}*/
+
+#granteeSelect {
+  max-width: 350px;
+}
+
+#stateGrantees {
+  padding-left: 20px;
+}
+#stateGrantees li {
+  text-align: left;
+  list-style-type: disc;
+
+}
+
+#granteeInfo,
+#stateInfo 
+{ display:none; }
+
+#programInfo .description,
+#granteeInfo .description {
+  text-align: justify;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* small screen portrait */
+/*
+@media (max-width: 321px) {
+
+  .pull-right { 
+    float: none!important; 
+  }
+
+}
+
+
+/* small screen lanscape */
+/*
+@media (max-width: 480px) {
+
+  .pull-right {
+    float: none!important; 
+  }
+
+}
+
+/* --------------------------------------------------------
+end of the maps */

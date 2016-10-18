@@ -100,78 +100,6 @@
 
 $(document).ready(function(){
 
-  // insert markers
-  for (var key in granteeData) {
-    $('#map-markers .cssmap-pins').append(
-      '<li id="marker-' + key + '" class="cssmap-pin" data-cssmap-coords="' + granteeData[key]['coords'] + '" style=";"> <div class="cssmap-tooltip-content">'+granteeData[key]['name'] +'</div> <a href="#' + key + ' " class="cssmap-marker"><img src="includes/pin.png" width="20" height="25" alt="pin"/></a>  </li>'
-    );  
-  }  
-
-/***
-  // CSSMap;
-  $("#map-usa").CSSMap({
-    "size": 1450,
-    "tooltips": "sticky",
-    "responsive": "auto",
-    "tapOnce": true,
-    "onLoad": function(e){
-      // unhide map (hiding prevents loading untidyness)
-      jQuery("#map-usa").show();
-
-      // determine min/max grantees
-      for (var stateKey in stateData) {
-        // loop grantees in each state
-        countGrantees = stateData[stateKey].grantees.length;
-        maxGrantees = (maxGrantees < countGrantees)? countGrantees : maxGrantees;
-        minGrantees = (minGrantees > countGrantees)? countGrantees : minGrantees;
-      }
-
-      for (var stateKey in stateData) {
-        // loop grantees in each state
-        pct = (stateData[stateKey].grantees.length - minGrantees) / (maxGrantees - minGrantees)
-        pct = Math.ceil(pct * 10);
-        $( ".state-" + stateKey + " .bg").addClass( 'opacity' + pct );
-      }
-
-    },
-    "onClick": function(e){
-      var stateCode = e[0].classList[0];
-      var stateInfo = stateData[stateCode];
-      $("#stateName").html(stateInfo['name']);
-      
-      var granteesUl = '';
-      for (var i = 0, len = stateInfo.grantees.length; i < len; i++) {
-        for (var key in granteeData) {
-          if (stateInfo.grantees[i] == key) {
-            granteesUl = granteesUl + '<li><a class="granteeLink" data-key="'+key+'" href="#' + key + '">' + granteeData[key]['name'] + '</a></li>';
-          }
-        }     
-      }
-      $("#stateGrantees").html(granteesUl);
-      $("#stateInfo").show();
-
-
-    },
-
-    pins: {
-      enable: true,
-      pinsId: "#map-markers",
-      mapSize: 1450,
-      markerPosition: "middle",
-      tooltipPosition: "top",
-      tooltipOnClick: false,
-      clickableRegions: true,
-    },
-
-    "multipleClick": {
-      "enable": false,
-      "separator": "+",
-      "hideSearchLink": true,
-      "clicksLimit": 0
-    }
-  });
-  // END OF THE CSSMap;
-***/
   function hashCheck() {
     var hashAttr = '';
 
@@ -194,33 +122,16 @@ $(document).ready(function(){
         $("#programInfo").hide();
         $("#granteeInfo").show();
 
-        // update the marker to grantee's headquarters, then unhide it
-        $('.cssmap-pin').hide();
-        $('#marker-' + key).show();
-
         // highlight states that contain this grantee
         for (var stateKey in stateData) {
           // loop grantees in each state
-          ////var foundIt = false;
           var fillOpacity = .1;
           for (var i3 = 0, len3 = stateData[stateKey].grantees.length; i3 < len3; i3++) {
             if (stateData[stateKey].grantees[i3] == hashAttr) {
-              ////foundIt = true
               fillOpacity = .7;
             }
           }
 
-          /***
-          if (foundIt) {
-            $( ".state-" + stateKey  ).attr( 'data-active', 'true' );
-          }
-          else {
-            $( ".state-" + stateKey  ).attr( 'data-active', 'false' );
-         
-            if ($( ".state-" + stateKey ).attr( 'data-active' )) {
-              $( ".state-" + stateKey ).removeAttr( 'data-active' );
-            }
-          }***/
           $( ".state-" + stateKey  ).attr( 'fill-opacity', fillOpacity );
 
         }   
@@ -230,25 +141,7 @@ $(document).ready(function(){
 
   window.onhashchange = hashCheck;
 
-  /* add grantees to select */
-  /***
-  for (var key in granteeData) {
-    $('#granteeSelect').append($('<option>', { 
-        value: key,
-        text : granteeData[key].name 
-    }));
-  }   
-  ***/
-
-
 });
-
-/** handle grantee select updates */
-/***
-function granteeSelectChange(value) {
-  window.location.hash = value;
-}
-***/
 
 function showAllGrantees() {
     $("#stateName").html("All Grantees");
@@ -283,6 +176,7 @@ for (var key in statesData.features) {
     }).addTo(map);
 
 
+    /*
     // control that shows state info on hover
     var info = L.control();
 
@@ -299,7 +193,7 @@ for (var key in statesData.features) {
     };
 
     info.addTo(map);
-
+    */
 
     // get color depending on population density value
     function getColor(d) {
@@ -337,27 +231,22 @@ for (var key in statesData.features) {
         if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
             layer.bringToFront();
         }
-        info.update(layer.feature.properties);
+        if (typeof(info) != "undefined") info.update(layer.feature.properties);
     }
 
     var geojson;
 
     function resetHighlight(e) {
         geojson.resetStyle(e.target);
-        info.update();
+        if (typeof(info) != "undefined") info.update();
     }
 
 
     function zoomToFeature(e) {
-        ///map.fitBounds(e.target.getBounds());
-        ///console.log(e.target.feature.properties.code);
         if (typeof e.target.feature.properties !== 'undefined') {
           window.location.hash = e.target.feature.properties.code;
 
-
-          ///e.target.setStyle({fillColor: '#0000FF'});
-
-          var stateCode = e.target.feature.properties.code;///e[0].classList[0];
+          var stateCode = e.target.feature.properties.code;
           var stateInfo = stateData[stateCode];
 
           if ( $("#stateName").html() == stateInfo['name']){
@@ -380,12 +269,11 @@ for (var key in statesData.features) {
               $("#stateInfo").show();
           }
         }
-
-        //console.log(e.target.feature);
     }
 
     function onEachFeature(feature, layer) {
         layer.setStyle({className: 'state-' + feature.properties.code });
+        layer.bindTooltip('<b>'+feature.properties.name+'</b><p>'+feature.properties.density+' programs.</p>');
         
         layer.on({
             mouseover: highlightFeature,
@@ -400,11 +288,8 @@ for (var key in statesData.features) {
         onEachFeature: onEachFeature
     }).addTo(map);
 
-    ///map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
-
 
     var legend = L.control({position: 'bottomright'});
-
     legend.onAdd = function (map) {
 
         var div = L.DomUtil.create('div', 'info legend'),
