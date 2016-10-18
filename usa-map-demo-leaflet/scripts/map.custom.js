@@ -163,8 +163,10 @@ for (var key in statesData.features) {
     statesData.features[key].properties.density = granteeCount;
 }   
 
+    var zoomLvl = 4; // default size
+    if ($(window).width() < 700) zoomLvl = 3; // mobile
 
-    var map = L.map('map', { zoomControl:true, scrollWheelZoom: false }).setView([37.8, -96], 4);
+    var map = L.map('map', { zoomControl:true, scrollWheelZoom: false }).setView([37.8, -96], zoomLvl);
     map.doubleClickZoom.disable();
     
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
