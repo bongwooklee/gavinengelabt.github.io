@@ -110,38 +110,57 @@ $(document).ready(function(){
 
     $("#granteeInfo").hide();
     $("#programInfo").show();
-    // loop all grantees
-    for (var key in granteeData) {
-      // if found grantee, then pop its data into granteeInfo  
-      if (hashAttr == key) {
-            
 
-        $("#granteeInfo .name").html(granteeData[key]['name']);
-        $("#granteeInfo .timeline").html(granteeData[key]['timeline']);
-        $("#granteeInfo .description").html(granteeData[key]['description']);
-        $("#programInfo").hide();
-        $("#granteeInfo").show();
+    if (hashAttr == 'all') {
+        showAllGrantees();
+        resetStateColors();
+    }
+    else {
+        // loop all grantees
+        for (var key in granteeData) {
+          // if found grantee, then pop its data into granteeInfo  
+          if (hashAttr == key) {
+            // modify the link, so that reclicking it removes the hash
+            $("#stateGrantees a[data-key=" + key + "]").attr('href', '#all');
 
-        // highlight states that contain this grantee
-        for (var stateKey in stateData) {
-          // loop grantees in each state
-          var fillOpacity = .1;
-          for (var i3 = 0, len3 = stateData[stateKey].grantees.length; i3 < len3; i3++) {
-            if (stateData[stateKey].grantees[i3] == hashAttr) {
-              fillOpacity = .7;
-            }
+            $("#granteeInfo .name").html(granteeData[key]['name']);
+            $("#granteeInfo .timeline").html(granteeData[key]['timeline']);
+            $("#granteeInfo .description").html(granteeData[key]['description']);
+            $("#programInfo").hide();
+            $("#granteeInfo").show();
+
+            // highlight states that contain this grantee
+            for (var stateKey in stateData) {
+              // loop grantees in each state
+              var fillOpacity = .1;
+              for (var i3 = 0, len3 = stateData[stateKey].grantees.length; i3 < len3; i3++) {
+                if (stateData[stateKey].grantees[i3] == hashAttr) {
+                  fillOpacity = .7;
+                }
+              }
+
+              $( ".state-" + stateKey  ).attr( 'fill-opacity', fillOpacity );
+
+            }   
           }
-
-          $( ".state-" + stateKey  ).attr( 'fill-opacity', fillOpacity );
-
-        }   
-      }
+        }
     }
   }
 
   window.onhashchange = hashCheck;
 
 });
+
+function resetStateColors() {
+    for (var stateKey in stateData) {
+        // loop grantees in each state
+        for (var i = 0, len = stateData[stateKey].grantees.length; i < len; i++) {
+            fillOpacity = .7;
+        }
+
+        $( ".state-" + stateKey  ).attr( 'fill-opacity', fillOpacity );
+    }   
+}
 
 function showAllGrantees() {
     $("#stateName").html("All Grantees");
