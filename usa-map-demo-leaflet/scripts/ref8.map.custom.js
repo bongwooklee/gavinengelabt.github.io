@@ -1,17 +1,11 @@
 
   var minGrantees = 999;
   var maxGrantees = 0;
-
   var mapSettings = {
     colors: {
         default: '#C8A2C8'
-    },
-    opacity: {
-        active: .7,
-        inactive: .1
     }
   }
-
 
   stateData = {
     al: { name: 'Alabama', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
@@ -131,6 +125,10 @@ $(document).ready(function(){
         for (var key in granteeData) {
           // if found grantee, then pop its data into granteeInfo  
           if (hashAttr == key) {
+            // set all state colors to be the same (although opacity may diff)
+            $("#map").attr('data-samefill', true);
+            $("path").attr('fill', mapSettings.colors.default);
+
             // modify the link, so that reclicking it removes the hash
             $("#stateGrantees a[data-key=" + key + "]").attr('href', '#all');
 
@@ -143,18 +141,14 @@ $(document).ready(function(){
             // highlight states that contain this grantee
             for (var stateKey in stateData) {
               // loop grantees in each state
-              var fillOpacity = mapSettings.opacity.inactive;
-              var dataActive = false;
+              var fillOpacity = .1;
               for (var i3 = 0, len3 = stateData[stateKey].grantees.length; i3 < len3; i3++) {
                 if (stateData[stateKey].grantees[i3] == hashAttr) {
-                  fillOpacity = mapSettings.opacity.active;
-                  dataActive = true;
-
+                  fillOpacity = .7;
                 }
               }
 
               $( ".state-" + stateKey  ).attr( 'fill-opacity', fillOpacity );
-              $( ".state-" + stateKey  ).attr( 'data-active', dataActive );
 
             }   
           }
@@ -170,11 +164,10 @@ function resetStateColors() {
     for (var stateKey in stateData) {
         // loop grantees in each state
         for (var i = 0, len = stateData[stateKey].grantees.length; i < len; i++) {
-            fillOpacity = mapSettings.opacity.active;
+            fillOpacity = .7;
         }
 
         $( ".state-" + stateKey  ).attr( 'fill-opacity', fillOpacity );
-        $( ".state-" + stateKey  ).removeAttr( 'data-active' );
     }   
 }
 
@@ -245,48 +238,62 @@ for (var key in statesData.features) {
     }
 
     function style(feature) {
+        console.log('style');
 
-        var dataActive = $(".state-"+feature.properties.code).attr('data-active');
-        if (dataActive == "false") {
-            return {};
+        currentColor = $(".state-"+feature.properties.code).attr('fill');
+        ////var newColor = ($("#map").attr('data-samefill') == "true")? mapSettings.colors.default : getColor(feature.properties.density);
+
+        /***
+        var newColor = '';
+        if ( $("#map").attr('data-samefill') == "true") {
+
+            newColor = mapSettings.colors.default;
+        console.log('new color1:'+newColor);
         }
+        else {
 
-        return {
+            newColor = getColor(feature.properties.density);
+        console.log('new color2:'+newColor);
+        }
+        ***/
+
+        result = {
             weight: 1,
             opacity: 1,
             color: 'white',
             dashArray: '0',
-            fillOpacity: mapSettings.opacity.active,
-            fillColor: getColor(feature.properties.density)
-        };
+            fillOpacity: 0.7,
+            fillColor: currentColor // getColor(feature.properties.density)
+        }
+
+
+        return result;
     }
 
     function highlightFeature(e) {
+        console.log('highlightFeature');
         var layer = e.target;
-        
-        var dataActive = $(".state-"+layer.feature.properties.code).attr('data-active');
-        if (dataActive !== "false") {
+
+        if ($("#map").attr('data-samefill') != "true") {
+
             layer.setStyle({
                 weight: 2,
                 color: '#666',
                 dashArray: '',
-                fillOpacity: mapSettings.opacity.active
+                fillOpacity: 0.7
             });
-
-            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-                layer.bringToFront();
-            }
-            if (typeof(info) != "undefined") info.update(layer.feature.properties);
         }
+
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            layer.bringToFront();
+        }
+        if (typeof(info) != "undefined") info.update(layer.feature.properties);
     }
 
     var geojson;
 
     function resetHighlight(e) {
-        var dataActive = $(".state-"+e.target.feature.properties.code).attr('data-active');
-        if (dataActive !== "false") {
-            geojson.resetStyle(e.target);
-        }
+        geojson.resetStyle(e.target); ////////////////////////////
         if (typeof(info) != "undefined") info.update();
     }
 
