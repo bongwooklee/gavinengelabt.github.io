@@ -144,13 +144,17 @@ $(document).ready(function(){
             for (var stateKey in stateData) {
               // loop grantees in each state
               var fillOpacity = .1;
+              var dataActive = false;
               for (var i3 = 0, len3 = stateData[stateKey].grantees.length; i3 < len3; i3++) {
                 if (stateData[stateKey].grantees[i3] == hashAttr) {
                   fillOpacity = .7;
+                  dataActive = true;
+
                 }
               }
 
               $( ".state-" + stateKey  ).attr( 'fill-opacity', fillOpacity );
+              $( ".state-" + stateKey  ).attr( 'data-active', dataActive );
 
             }   
           }
@@ -170,6 +174,7 @@ function resetStateColors() {
         }
 
         $( ".state-" + stateKey  ).attr( 'fill-opacity', fillOpacity );
+        $( ".state-" + stateKey  ).removeAttr( 'data-active' );
     }   
 }
 
@@ -240,6 +245,12 @@ for (var key in statesData.features) {
     }
 
     function style(feature) {
+
+        var dataActive = $(".state-"+feature.properties.code).attr('data-active');
+        if (dataActive == "false") {
+            return {};
+        }
+
         return {
             weight: 1,
             opacity: 1,
@@ -252,24 +263,30 @@ for (var key in statesData.features) {
 
     function highlightFeature(e) {
         var layer = e.target;
+        
+        var dataActive = $(".state-"+layer.feature.properties.code).attr('data-active');
+        if (dataActive !== "false") {
+            layer.setStyle({
+                weight: 2,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.7
+            });
 
-        layer.setStyle({
-            weight: 2,
-            color: '#666',
-            dashArray: '',
-            fillOpacity: 0.7
-        });
-
-        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-            layer.bringToFront();
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                layer.bringToFront();
+            }
+            if (typeof(info) != "undefined") info.update(layer.feature.properties);
         }
-        if (typeof(info) != "undefined") info.update(layer.feature.properties);
     }
 
     var geojson;
 
     function resetHighlight(e) {
-        geojson.resetStyle(e.target);
+        var dataActive = $(".state-"+e.target.feature.properties.code).attr('data-active');
+        if (dataActive !== "false") {
+            geojson.resetStyle(e.target);
+        }
         if (typeof(info) != "undefined") info.update();
     }
 
