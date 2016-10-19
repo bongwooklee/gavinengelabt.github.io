@@ -2,6 +2,17 @@
   var minGrantees = 999;
   var maxGrantees = 0;
 
+  var mapSettings = {
+    colors: {
+        default: '#C8A2C8'
+    },
+    opacity: {
+        active: .7,
+        inactive: .1
+    }
+  }
+
+
   stateData = {
     al: { name: 'Alabama', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'norc', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
     ak: { name: 'Alaska', grantees: ['chcs', 'cafp', 'cadca', 'facadd', 'fract', 'fin', 'gih', 'lac', 'mgr', 'nas', 'phope', 'abamf', 'csjksu', 'tyr', 'tah', 'uisap'] },
