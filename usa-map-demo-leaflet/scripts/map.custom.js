@@ -4,7 +4,8 @@
 
   var mapSettings = {
     colors: {
-        default: '#C8A2C8'
+        default: '#C8A2C8',
+        useDefault: false
     },
     opacity: {
         active: .7,
@@ -144,7 +145,9 @@ $(document).ready(function(){
             for (var stateKey in stateData) {
               // loop grantees in each state
               var fillOpacity = mapSettings.opacity.inactive;
+              var fillColor = mapSettings.colors.default;
               var dataActive = false;
+
               for (var i3 = 0, len3 = stateData[stateKey].grantees.length; i3 < len3; i3++) {
                 if (stateData[stateKey].grantees[i3] == hashAttr) {
                   fillOpacity = mapSettings.opacity.active;
@@ -155,6 +158,7 @@ $(document).ready(function(){
 
               $( ".state-" + stateKey  ).attr( 'fill-opacity', fillOpacity );
               $( ".state-" + stateKey  ).attr( 'data-active', dataActive );
+              if (mapSettings.colors.useDefault) $( ".state-" + stateKey  ).attr( 'fill', fillColor );
 
             }   
           }
@@ -234,7 +238,10 @@ for (var key in statesData.features) {
 
     // get color depending on population density value
     function getColor(d) {
-
+        // if #granteeInfo showing, return the uniform color
+        if (mapSettings.colors.useDefault && $('#granteeInfo').is(":visible") ) {
+            return mapSettings.colors.default;
+        }
 
         return d > 26 ? '#800026' :
                 d > 24  ? '#BD0026' :
