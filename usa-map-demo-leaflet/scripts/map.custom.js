@@ -124,7 +124,7 @@ $(document).ready(function(){
 
     if (hashAttr == 'all') {
         showAllGrantees();
-        resetStateColors();
+        resetStateOpacity();
     }
     else {
         // loop all grantees
@@ -166,7 +166,7 @@ $(document).ready(function(){
 
 });
 
-function resetStateColors() {
+function resetStateOpacity() {
     for (var stateKey in stateData) {
         // loop grantees in each state
         for (var i = 0, len = stateData[stateKey].grantees.length; i < len; i++) {
@@ -234,6 +234,8 @@ for (var key in statesData.features) {
 
     // get color depending on population density value
     function getColor(d) {
+
+
         return d > 26 ? '#800026' :
                 d > 24  ? '#BD0026' :
                 d > 22  ? '#E31A1C' :
