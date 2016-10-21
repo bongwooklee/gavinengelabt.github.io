@@ -8,7 +8,7 @@
         useDefault: false
     },
     opacity: {
-        active: .7,
+        active: 1,
         inactive: .1
     }
   }
@@ -243,14 +243,14 @@ for (var key in statesData.features) {
             return mapSettings.colors.default;
         }
 
-        return d > 26 ? '#800026' :
-                d > 24  ? '#BD0026' :
-                d > 22  ? '#E31A1C' :
-                d > 20 ? '#FC4E2A' :
-                d > 18   ? '#FD8D3C' :
-                d > 16   ? '#FEB24C' :
-                d > 14   ? '#FED976' :
-                            '#FFEDA0';
+        return d > 26 ? '#033069' :
+                d > 24  ? '#81127A' :
+                d > 22  ? '#B51737' :
+                d > 20 ? '#DF5F1B' :
+                d > 18   ? '#227A17' :
+                d > 16   ? '#199DDA' :
+                d > 14   ? '#7CCB00' :
+                            '#858585';
     }
 
     function style(feature) {
