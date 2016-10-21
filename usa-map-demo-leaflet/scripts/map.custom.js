@@ -277,7 +277,7 @@ for (var key in statesData.features) {
         if (dataActive !== "false") {
             layer.setStyle({
                 weight: 2,
-                color: '#666',
+                color: '#fff',
                 dashArray: '',
                 fillOpacity: mapSettings.opacity.active
             });
