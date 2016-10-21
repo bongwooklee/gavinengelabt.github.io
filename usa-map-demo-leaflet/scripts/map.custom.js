@@ -182,12 +182,16 @@ function resetStateOpacity() {
     }   
 }
 
+
+
+
+
 function showAllGrantees() {
     $("#stateName").html("All Grantees");
 
     var granteesUl = '';
     for (var key in granteeData) {
-        granteesUl = granteesUl + '<li><a class="granteeLink" data-key="'+key+'" href="#' + key + '">' + granteeData[key]['name'] + '</a></li>';
+        granteesUl = granteesUl + '<option class="granteeLink" value="'+key+'" data-key="'+key+'" href="#' + key + '">' + granteeData[key]['name'] + '</option>';
     }     
     $("#stateGrantees").html(granteesUl);
     $("#stateInfo").show();
@@ -369,3 +373,13 @@ for (var key in statesData.features) {
     };
 
     legend.addTo(map);
+
+    function onOptionClick () {
+        alert(e.value);
+    }
+
+    /* */
+    var selectStateGrantees = document.getElementById("stateGrantees");
+    var test = selectStateGrantees.getElementsByClassName("granteeLink");
+    //alert(test.length);
+    test.addEventListener("change", onOptionClick, false);
