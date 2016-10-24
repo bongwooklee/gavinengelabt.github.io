@@ -247,9 +247,7 @@ for (var key in statesData.features) {
             return mapSettings.colors.default;
         }
 
-        return d > 26 ? '#033069' :
-                d > 24  ? '#81127A' :
-                d > 22  ? '#B51737' :
+        return  d > 22  ? '#B51737' :
                 d > 20 ? '#DF5F1B' :
                 d > 18   ? '#227A17' :
                 d > 16   ? '#199DDA' :
@@ -355,7 +353,7 @@ for (var key in statesData.features) {
     legend.onAdd = function (map) {
 
         var div = L.DomUtil.create('div', 'info legend'),
-            grades = [0, 14, 16, 18, 20, 22, 24, 26],
+            grades = [0, 14, 16, 18, 20, 22],
             labels = [],
             from, to;
 
@@ -378,8 +376,3 @@ for (var key in statesData.features) {
         alert(e.value);
     }
 
-    /* */
-    var selectStateGrantees = document.getElementById("stateGrantees");
-    var test = selectStateGrantees.getElementsByClassName("granteeLink");
-    //alert(test.length);
-    test.addEventListener("change", onOptionClick, false);
