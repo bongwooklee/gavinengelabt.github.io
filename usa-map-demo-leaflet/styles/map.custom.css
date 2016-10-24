@@ -55,31 +55,38 @@ path[data-active="false"] {
 
 /* font styling below based from www.hiltonfoundation.grants*/
 
-.GrantsUSMap-title {
-  font-family: "Source Sans Pro", "Trebuchet MS", -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "HelveticaNeue", Arial, Helvetica, sans-serif;
-  text-rendering: optimizeLegibility;
-
-  color: #444;
-  font-size: 32px
-  line-height: 42px;
-  margin-bottom: 12px;
-}
-
-
 .GrantsUSMap-label, #stateName  {
   font-size: 16px;
   font-weight: 300;
   line-height: 24px;
   color: #444;
   text-transform: uppercase;
+
+}
+
+.name {
+  font-family: "Source Sans Pro", "Trebuchet MS", -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "HelveticaNeue", Arial, Helvetica, sans-serif;
+  text-rendering: optimizeLegibility;
+  color: #444;
+  font-size: 32px
+  line-height: 42px;
+  margin-bottom: 12px;
+  font-weight: 300;
 }
 
 
-
 .timeline {
-  font-size: 16px; 
+  font-size: 18px; 
   line-height: 28px;
   color: #858585;
+  margin-bottom: 12px;
+}
+
+.description {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 300;
+  color: #444;
 }
 
 
