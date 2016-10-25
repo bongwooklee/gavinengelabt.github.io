@@ -191,9 +191,9 @@ function showAllGrantees() {
 
     var granteesUl = '';
     for (var key in granteeData) {
-        granteesUl = granteesUl + '<option class="granteeLink" value="'+key+'" data-key="'+key+'">' + granteeData[key]['name'] + '</option>';
+        granteesUl = granteesUl + '<option value="'+key+'" data-key="'+key+'">' + granteeData[key]['name'] + '</option>';
     }     
-    $("#stateGrantees").html(granteesUl);
+    $("#stateGrantees").html(granteesUl + '<option value="all">All Grantees</option>');
     $("#stateInfo").show();
 }
 showAllGrantees(); // on default load
@@ -321,11 +321,11 @@ for (var key in statesData.features) {
               for (var i = 0, len = stateInfo.grantees.length; i < len; i++) {
                 for (var key in granteeData) {
                   if (stateInfo.grantees[i] == key) {
-                    granteesUl = granteesUl + '<option class="granteeLink" value="'+key+'" data-key="'+key+'">' + granteeData[key]['name'] + '</option>';
+                    granteesUl = granteesUl + '<option value="'+key+'" data-key="'+key+'">' + granteeData[key]['name'] + '</option>';
                   }
                 }     
               }
-              $("#stateGrantees").html(granteesUl);
+              $("#stateGrantees").html(granteesUl+ '<option value="all">All Grantees</option>');
               $("#stateInfo").show();
           }
         }
