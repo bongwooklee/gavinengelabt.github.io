@@ -4,8 +4,8 @@
 
   var mapSettings = {
     colors: {
-        default: '#C8A2C8',
-        useDefault: false
+        default: '#033069',
+        useDefault: true
     },
     opacity: {
         active: 1,
@@ -247,12 +247,15 @@ for (var key in statesData.features) {
             return mapSettings.colors.default;
         }
 
-        return  d > 22  ? '#B51737' :
-                d > 20 ? '#DF5F1B' :
-                d > 18   ? '#227A17' :
-                d > 16   ? '#199DDA' :
-                d > 14   ? '#7CCB00' :
-                            '#858585';
+        else {
+
+            return  d > 22  ? '#B51737' :
+                    d > 20 ? '#DF5F1B' :
+                    d > 18   ? '#227A17' :
+                    d > 16   ? '#199DDA' :
+                    d > 14   ? '#7CCB00' :
+                                '#858585';
+        }
     }
 
     function style(feature) {
