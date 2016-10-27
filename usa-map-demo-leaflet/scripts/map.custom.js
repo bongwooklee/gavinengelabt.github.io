@@ -5,7 +5,7 @@
   var mapSettings = {
     colors: {
         default: '#033069',
-        useDefault: true
+        useDefault: false
     },
     opacity: {
         active: 1,
