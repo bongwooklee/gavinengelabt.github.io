@@ -199,6 +199,7 @@ function showAllGrantees() {
     $("#stateGrantees").html(granteesUl + '<option value="all">All Grantees</option>');
     $("#stateInfo").show();
 }
+
 showAllGrantees(); // on default load
 
 /** leaflet */
@@ -278,6 +279,8 @@ for (var key in statesData.features) {
         };
     }
 
+
+    /* hover over state */
     function highlightFeature(e) {
         var layer = e.target;
         
@@ -308,6 +311,7 @@ for (var key in statesData.features) {
     }
 
 
+    /* when a state is clicked */
     function zoomToFeature(e) {
         if (typeof e.target.feature.properties !== 'undefined') {
           window.location.hash = e.target.feature.properties.code;
@@ -333,10 +337,13 @@ for (var key in statesData.features) {
               }
               $("#stateGrantees").html(granteesUl+ '<option value="all">All Grantees</option>');
               $("#stateInfo").show();
+              $(".legend").hide();
           }
         }
     }
 
+
+    /* shows additional information for each state on mouseover */
     function onEachFeature(feature, layer) {
         layer.setStyle({className: 'state-' + feature.properties.code });
         layer.bindTooltip('<b>'+feature.properties.name+'</b><p>'+feature.properties.density+' programs.</p>');
