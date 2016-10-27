@@ -142,6 +142,7 @@ $(document).ready(function(){
             $("#granteeInfo .description").html(granteeData[key]['description']);
             $("#programInfo").hide();
             $("#granteeInfo").show();
+            $(".info.legend.leaflet-control").hide(); // hide legend
 
             // highlight states that contain this grantee
             for (var stateKey in stateData) {
