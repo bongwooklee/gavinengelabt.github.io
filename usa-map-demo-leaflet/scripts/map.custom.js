@@ -127,6 +127,7 @@ $(document).ready(function(){
         showAllGrantees();
         resetStateOpacity();
         $(".info.legend.leaflet-control").show(); // Show legend
+        $(".programcount").show(); // Show programcount
     }
     else {
         // loop all grantees
@@ -143,6 +144,7 @@ $(document).ready(function(){
             $("#programInfo").hide();
             $("#granteeInfo").show();
             $(".info.legend.leaflet-control").hide(); // hide legend
+           
 
             // highlight states that contain this grantee
             for (var stateKey in stateData) {
@@ -298,6 +300,11 @@ for (var key in statesData.features) {
             }
             if (typeof(info) != "undefined") info.update(layer.feature.properties);
         }
+
+        //check if data-active attribute exists, if so, hide program count 
+        if (dataActive=="true" || dataActive=="false") {
+            $(".programcount").hide(); // hide programcount
+        }
     }
 
     var geojson;
@@ -337,7 +344,7 @@ for (var key in statesData.features) {
               }
               $("#stateGrantees").html(granteesUl+ '<option value="all">All Grantees</option>');
               $("#stateInfo").show();
-              $(".legend").hide();
+              
           }
         }
     }
@@ -346,7 +353,7 @@ for (var key in statesData.features) {
     /* shows additional information for each state on mouseover */
     function onEachFeature(feature, layer) {
         layer.setStyle({className: 'state-' + feature.properties.code });
-        layer.bindTooltip('<b>'+feature.properties.name+'</b><p>'+feature.properties.density+' programs.</p>');
+        layer.bindTooltip('<b>'+feature.properties.name+'</b><p class="programcount">'+feature.properties.density+' programs.</p>');
         
         layer.on({
             mouseover: highlightFeature,
