@@ -126,9 +126,11 @@ $(document).ready(function(){
     if (hashAttr == 'all') {
         showAllGrantees();
         resetStateOpacity();
+        $(".info.legend.leaflet-control").show(); // Show legend
     }
     else {
         // loop all grantees
+        //Shows information for Grantee selected from main select
         for (var key in granteeData) {
           // if found grantee, then pop its data into granteeInfo  
           if (hashAttr == key) {
