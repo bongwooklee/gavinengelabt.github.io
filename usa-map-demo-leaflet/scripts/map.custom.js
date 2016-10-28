@@ -5,7 +5,7 @@
   var mapSettings = {
     colors: {
         default: '#033069',
-        useDefault: false
+        useDefault: true
     },
     opacity: {
         active: 1,
@@ -128,6 +128,11 @@ $(document).ready(function(){
         resetStateOpacity();
         $(".info.legend.leaflet-control").show(); // Show legend
         $(".programcount").show(); // Show programcount
+        layer.setStyle({
+                
+                fillOpacity: mapSettings.opacity.active,
+                fillColor: getColor(feature.properties.density)
+        });
     }
     else {
         // loop all grantees
@@ -271,14 +276,31 @@ for (var key in statesData.features) {
             return {};
         }
 
-        return {
+        // if state has data-active attribute, return blue color
+        else if (dataActive == "true") {
+            return {
+            weight: 1,
+            opacity: 1,
+            color: 'white',
+            dashArray: '0',
+            fillOpacity: mapSettings.opacity.active,
+            fillColor: getColor(mapSettings.opacity.default)
+            };
+        }
+
+        //if state doesn't data-active attribute, return co
+
+        else {
+
+            return {
             weight: 1,
             opacity: 1,
             color: 'white',
             dashArray: '0',
             fillOpacity: mapSettings.opacity.active,
             fillColor: getColor(feature.properties.density)
-        };
+            };
+        }
     }
 
 
@@ -292,7 +314,8 @@ for (var key in statesData.features) {
                 weight: 2,
                 color: '#fff',
                 dashArray: '',
-                fillOpacity: mapSettings.opacity.active
+                fillOpacity: mapSettings.opacity.active,
+                fillColor: getColor(mapSettings.opacity.default)
             });
 
             if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
