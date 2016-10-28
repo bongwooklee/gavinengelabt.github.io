@@ -128,11 +128,6 @@ $(document).ready(function(){
         resetStateOpacity();
         $(".info.legend.leaflet-control").show(); // Show legend
         $(".programcount").show(); // Show programcount
-        layer.setStyle({
-                
-                fillOpacity: mapSettings.opacity.active,
-                fillColor: getColor(feature.properties.density)
-        });
     }
     else {
         // loop all grantees
@@ -291,7 +286,6 @@ for (var key in statesData.features) {
         //if state doesn't data-active attribute, return co
 
         else {
-
             return {
             weight: 1,
             opacity: 1,
