@@ -198,7 +198,7 @@ function showAllGrantees() {
     for (var key in granteeData) {
         granteesUl = granteesUl + '<option value="'+key+'" data-key="'+key+'">' + granteeData[key]['name'] + '</option>';
     }     
-    $("#stateGrantees").html(granteesUl + '<option value="all">All Grantees</option>');
+    $("#stateGrantees").html('<option value="all">All Grantees</option>'+granteesUl);
     $("#stateInfo").show();
 }
 
@@ -279,12 +279,11 @@ for (var key in statesData.features) {
             color: 'white',
             dashArray: '0',
             fillOpacity: mapSettings.opacity.active,
-            fillColor: getColor(mapSettings.opacity.default)
+            fillColor: getColor(mapSettings.colors.default) // dark blue
             };
         }
 
-        //if state doesn't data-active attribute, return co
-
+        //if state doesn't data-active attribute, return colors
         else {
             return {
             weight: 1,
@@ -292,7 +291,7 @@ for (var key in statesData.features) {
             color: 'white',
             dashArray: '0',
             fillOpacity: mapSettings.opacity.active,
-            fillColor: getColor(feature.properties.density)
+            fillColor: getColor(feature.properties.density) // different colors
             };
         }
     }
@@ -359,7 +358,7 @@ for (var key in statesData.features) {
                   }
                 }     
               }
-              $("#stateGrantees").html(granteesUl+ '<option value="all">All Grantees</option>');
+              $("#stateGrantees").html('<option value="all">All Grantees</option>'+granteesUl);
               $("#stateInfo").show();
               
           }
