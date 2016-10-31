@@ -187,8 +187,16 @@ function resetStateOpacity() {
     }   
 }
 
-
-
+/**
+ * Set the background fill color to the default for all states.  Takes into account the grantees count.
+ */
+function resetStateFill() {
+    for (var stateKey in stateData) {
+        var granteeCount = stateData[stateKey].grantees.length;
+        var fillColor = getColor(granteeCount);
+        $( ".state-" + stateKey  ).attr( 'fill', fillColor );
+    }   
+}
 
 
 function showAllGrantees() {
@@ -200,6 +208,7 @@ function showAllGrantees() {
     }     
     $("#stateGrantees").html('<option value="all">All Grantees</option>'+granteesUl);
     $("#stateInfo").show();
+    resetStateFill();
 }
 
 showAllGrantees(); // on default load
