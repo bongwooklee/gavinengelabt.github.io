@@ -280,18 +280,6 @@ for (var key in statesData.features) {
             return {};
         }
 
-        // if state has data-active attribute, return blue color
-        else if (dataActive == "true") {
-            return {
-            weight: 1,
-            opacity: 1,
-            color: 'white',
-            dashArray: '0',
-            fillOpacity: mapSettings.opacity.active,
-            fillColor: mapSettings.colors.default // dark blue
-            };
-        }
-
         //if state doesn't data-active attribute, return colors
         else {
             return {
