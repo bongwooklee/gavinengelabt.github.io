@@ -288,7 +288,7 @@ for (var key in statesData.features) {
             color: 'white',
             dashArray: '0',
             fillOpacity: mapSettings.opacity.active,
-            fillColor: getColor(mapSettings.colors.default) // dark blue
+            fillColor: mapSettings.colors.default // dark blue
             };
         }
 
