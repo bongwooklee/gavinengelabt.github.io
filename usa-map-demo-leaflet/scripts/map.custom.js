@@ -5,13 +5,15 @@
   var mapSettings = {
     colors: {
         default: '#033069',
-        useDefault: true
+        useDefault: true,
+        grayhighlight: '#858585'
     },
     opacity: {
         active: 1,
         inactive: .1
     }
   }
+
 
 
   stateData = {
@@ -305,7 +307,7 @@ for (var key in statesData.features) {
                 color: '#fff',
                 dashArray: '',
                 fillOpacity: mapSettings.opacity.active,
-                fillColor: getColor(mapSettings.opacity.default)
+                fillColor: getColor(mapSettings.colors.default)
             });
 
             if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
@@ -316,11 +318,11 @@ for (var key in statesData.features) {
 
         if(dataActive=="true") {
             layer.setStyle({
-                fillColor: "#858585" //return gray highlight if state is dark blue
+                fillColor: mapSettings.colors.grayhighlight //return gray highlight if state is dark blue
             });
         }
 
-        //check if data-active attribute exists, if so, hide program count 
+        //check if data-active attribute exists. If so, hide program count 
         if (dataActive=="true" || dataActive=="false") {
             $(".programcount").hide(); // hide programcount
         }
@@ -339,6 +341,8 @@ for (var key in statesData.features) {
 
     /* when a state is clicked */
     function zoomToFeature(e) {
+        resetStateFill();
+
         if (typeof e.target.feature.properties !== 'undefined') {
           window.location.hash = e.target.feature.properties.code;
 
