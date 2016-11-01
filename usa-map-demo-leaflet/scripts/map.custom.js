@@ -314,6 +314,12 @@ for (var key in statesData.features) {
             if (typeof(info) != "undefined") info.update(layer.feature.properties);
         }
 
+        if(dataActive=="true") {
+            layer.setStyle({
+                fillColor: "#858585" //return gray highlight if state is dark blue
+            });
+        }
+
         //check if data-active attribute exists, if so, hide program count 
         if (dataActive=="true" || dataActive=="false") {
             $(".programcount").hide(); // hide programcount
