@@ -260,7 +260,13 @@ for (var key in statesData.features) {
     // get color depending on population density value
     function getColor(d) {
         // if #granteeInfo showing, return the uniform color
-        if (mapSettings.colors.useDefault && $('#granteeInfo').is(":visible") ) {
+        // if (mapSettings.colors.useDefault && $('#granteeInfo').is(":visible") ) {
+
+
+        var statename= $('#stateName').text()+ " " + $('#granteeInfo').is(":visible");
+        console.log(statename);
+
+        if (mapSettings.colors.useDefault && $('#stateName')==='All Grantees' && $('#programInfo').is(":hidden")) {
             return mapSettings.colors.default;
         }
 
@@ -331,9 +337,18 @@ for (var key in statesData.features) {
     var geojson;
 
     function resetHighlight(e) {
+        var layer = e.target;
         var dataActive = $(".state-"+e.target.feature.properties.code).attr('data-active');
         if (dataActive !== "false") {
             geojson.resetStyle(e.target);
+
+
+            /*if( $('#stateName')!=='All Grantees') {
+                layer.setStyle({
+                fillColor: mapSettings.colors.default //return gray highlight if state is dark blue
+                });
+            }
+            */
         }
         if (typeof(info) != "undefined") info.update();
     }
@@ -341,8 +356,9 @@ for (var key in statesData.features) {
 
     /* when a state is clicked */
     function zoomToFeature(e) {
-        resetStateFill();
 
+        resetStateFill();
+        
         if (typeof e.target.feature.properties !== 'undefined') {
           window.location.hash = e.target.feature.properties.code;
 
