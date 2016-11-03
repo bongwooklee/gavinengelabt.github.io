@@ -263,9 +263,6 @@ for (var key in statesData.features) {
         // if (mapSettings.colors.useDefault && $('#granteeInfo').is(":visible") ) {
 
 
-        var statename= $('#stateName').text()+ " " + $('#granteeInfo').is(":visible");
-        console.log(statename);
-
         if (mapSettings.colors.useDefault && $('#stateName')==='All Grantees' && $('#granteeInfo').is(":visible")) {
             return mapSettings.colors.default;
         }
@@ -342,11 +339,16 @@ for (var key in statesData.features) {
         if (dataActive !== "false") {
             geojson.resetStyle(e.target);
 
-
-           if( $('#stateName').text()==='All Grantees' ||  $('#granteeInfo').is(":visible")) {
-                layer.setStyle({
-                fillColor: mapSettings.colors.default //return dark blue
-                });
+            
+            var hashAttr = window.location.hash.replace(/[^a-z0-9]/gi, '');
+            //On mouseout, return blue color on certain instances
+           if( $('#stateName').text()==='All Grantees' || $('#granteeInfo').is(":visible")) {
+                //check that All Grantees hasn't been selected
+                if (hashAttr!=="all") {
+                    layer.setStyle({
+                        fillColor: mapSettings.colors.default //return dark blue
+                    });
+                }
             }
             
         }
