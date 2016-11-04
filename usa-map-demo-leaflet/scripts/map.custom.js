@@ -361,6 +361,7 @@ for (var key in statesData.features) {
     function zoomToFeature(e) {
 
         resetStateFill();
+        resetStateOpacity();
         
         if (typeof e.target.feature.properties !== 'undefined') {
           window.location.hash = e.target.feature.properties.code;
