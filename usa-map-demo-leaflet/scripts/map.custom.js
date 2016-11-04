@@ -321,7 +321,7 @@ for (var key in statesData.features) {
 
         if(dataActive=="true") {
             layer.setStyle({
-                fillColor: mapSettings.colors.grayhighlight //return gray highlight if state is dark blue
+                fillColor: mapSettings.colors.grayhighlight //return gray highlight when state is active
             });
         }
 
@@ -341,10 +341,11 @@ for (var key in statesData.features) {
 
             
             var hashAttr = window.location.hash.replace(/[^a-z0-9]/gi, '');
-            //On mouseout, return blue color on certain instances
+            console.log("hashAttr: " + hashAttr);
+            //On mouseout, return blue color when grantee has been selected on right.
            if( $('#stateName').text()==='All Grantees' || $('#granteeInfo').is(":visible")) {
-                //check that All Grantees hasn't been selected
-                if (hashAttr!=="all") {
+                //DO NOT return blue color when "All Grantees" has been selected or when page has loaded.
+                if (hashAttr!=="all" && hashAttr!=="") {
                     layer.setStyle({
                         fillColor: mapSettings.colors.default //return dark blue
                     });
