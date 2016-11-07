@@ -336,7 +336,7 @@ for (var key in statesData.features) {
     function resetHighlight(e) {
         var layer = e.target;
         var dataActive = $(".state-"+e.target.feature.properties.code).attr('data-active');
-        if (dataActive !== "false") {
+        if (dataActive !== "false") { //data-active == true, data-active==undefined
             geojson.resetStyle(e.target);
 
             
@@ -345,14 +345,14 @@ for (var key in statesData.features) {
             //On mouseout, return blue color when grantee has been selected on right.
            if( $('#stateName').text()==='All Grantees' || $('#granteeInfo').is(":visible")) {
                 //DO NOT return blue color when "All Grantees" has been selected or when page has loaded.
-                if (hashAttr!=="all" && hashAttr!=="") {
+                if (hashAttr!=="all" && hashAttr!=="" && dataActive !== undefined) {
                     layer.setStyle({
                         fillColor: mapSettings.colors.default //return dark blue
                     });
                 }
-            }
-            
+            }   
         }
+
         if (typeof(info) != "undefined") info.update();
     }
 
