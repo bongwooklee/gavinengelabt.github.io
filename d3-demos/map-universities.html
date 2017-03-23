@@ -114,7 +114,7 @@ html,
         }
     </style>
 	<script type="text/javascript">var switchTo5x=true;</script>
-	<script type="text/javascript" src="https://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript" src="//w.sharethis.com/button/buttons.js"></script>
 	<script type="text/javascript">stLight.options({publisher: "505a26ad-d820-47bd-a500-7f49d04a30f5", doNotHash: true, doNotCopy: false, hashAddressBar: false});</script>
 <body>
 <div id="container" style="width:900px;height:500px;margin:0px;opacity:0;border:solid 1px #99d8c9;">
@@ -145,10 +145,10 @@ html,
 	<span class='st_email'></span>
 </div>
 
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
-<script src="http://blog.csaladen.es/universities%20geo/dragdealer.js"></script>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script src="//d3js.org/d3.geo.projection.v0.min.js"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+<script src="//blog.csaladen.es/universities%20geo/dragdealer.js"></script>
 <script>
 var colors2=["#c994c7",
 "#df65b0",
@@ -220,8 +220,8 @@ var tiphide = function() {
 }	
 	
  
-d3.json("http://blog.csaladen.es/universities%20geo/u.json",  function(error, u) {
-d3.json("http://blog.csaladen.es/universities%20geo/v.json",  function(error, v) {
+d3.json("https://blog.csaladen.es/universities%20geo/u.json",  function(error, u) {
+d3.json("https://blog.csaladen.es/universities%20geo/v.json",  function(error, v) {
 
 var svg = d3.select("#container").append("svg")
     .attr("width", width)
@@ -246,7 +246,7 @@ svg
     .call(zoom) // delete this line to disable free zooming
     .call(zoom.event);
 
-d3.json("http://blog.csaladen.es/universities%20geo/world.json", function(error, world) {
+d3.json("https://blog.csaladen.es/universities%20geo/world.json", function(error, world) {
   g.selectAll("path")
       .data(topojson.feature(world, world.objects.countries).features)
     .enter().append("path")
