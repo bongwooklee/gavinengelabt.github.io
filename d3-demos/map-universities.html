@@ -218,8 +218,8 @@ var tiphide = function() {
 }	
 	
  
-d3.json("http://blog.csaladen.es/universities%20geo/u.json",  function(error, u) {
-d3.json("http://blog.csaladen.es/universities%20geo/v.json",  function(error, v) {
+d3.json("u.json",  function(error, u) {
+d3.json("v.json",  function(error, v) {
 
 var svg = d3.select("#container").append("svg")
     .attr("width", width)
