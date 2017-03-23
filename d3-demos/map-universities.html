@@ -244,7 +244,7 @@ svg
     .call(zoom) // delete this line to disable free zooming
     .call(zoom.event);
 
-d3.json("http://blog.csaladen.es/universities%20geo/world.json", function(error, world) {
+d3.json("world.json", function(error, world) {
   g.selectAll("path")
       .data(topojson.feature(world, world.objects.countries).features)
     .enter().append("path")
