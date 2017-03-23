@@ -114,8 +114,6 @@ html,
         }
     </style>
 	<script type="text/javascript">var switchTo5x=true;</script>
-	<script type="text/javascript" src="//w.sharethis.com/button/buttons.js"></script>
-	<script type="text/javascript">stLight.options({publisher: "505a26ad-d820-47bd-a500-7f49d04a30f5", doNotHash: true, doNotCopy: false, hashAddressBar: false});</script>
 <body>
 <div id="container" style="width:900px;height:500px;margin:0px;opacity:0;border:solid 1px #99d8c9;">
 <div style="position:fixed;float:left;top:485px;left:805px;opacity:1;font-size:8px;color:#99d8c9;"><a href="http://www.csaladen.es" target="_blank">csaladen.es</a> | <a href="https://twitter.com/csaladenes" target="_blank">@csaladenes</a></div>
@@ -220,8 +218,8 @@ var tiphide = function() {
 }	
 	
  
-d3.json("https://blog.csaladen.es/universities%20geo/u.json",  function(error, u) {
-d3.json("https://blog.csaladen.es/universities%20geo/v.json",  function(error, v) {
+d3.json("http://blog.csaladen.es/universities%20geo/u.json",  function(error, u) {
+d3.json("http://blog.csaladen.es/universities%20geo/v.json",  function(error, v) {
 
 var svg = d3.select("#container").append("svg")
     .attr("width", width)
@@ -246,7 +244,7 @@ svg
     .call(zoom) // delete this line to disable free zooming
     .call(zoom.event);
 
-d3.json("https://blog.csaladen.es/universities%20geo/world.json", function(error, world) {
+d3.json("http://blog.csaladen.es/universities%20geo/world.json", function(error, world) {
   g.selectAll("path")
       .data(topojson.feature(world, world.objects.countries).features)
     .enter().append("path")
