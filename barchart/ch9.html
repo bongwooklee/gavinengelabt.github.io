@@ -18,10 +18,15 @@
 			//Width and height
 			var w = 600;
 			var h = 250;
+			var easing = ''
+			var timing = 500
+			var delayed = 1000
 			
 			var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,
 							11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
 			
+
+
 			var xScale = d3.scale.ordinal()
 							.domain(d3.range(dataset.length))
 							.rangeRoundBands([0, w], 0.05);
@@ -81,13 +86,27 @@
 			d3.select("p")
 				.on("click", function() {
 
+
+
 					//New values for dataset
-					dataset = [ 11, 12, 15, 20, 18, 17, 16, 18, 23, 25,
-								5, 10, 13, 19, 21, 25, 22, 18, 15, 13 ];
+					// dataset = [ 11, 12, 15, 20, 18, 17, 16, 18, 23, 25,
+					// 			5, 10, 13, 19, 21, 25, 22, 18, 15, 13 ];
+
+//New values for dataset
+var numValues = dataset.length;               //Count original length of dataset
+dataset = [];                                       //Initialize empty array
+for (var i = 0; i < numValues; i++) {               //Loop numValues times
+    var newNumber = Math.floor(Math.random() * 25); //New random integer (0-24)
+    dataset.push(newNumber);                        //Add new number to array
+}
 
 					//Update all rects
 					svg.selectAll("rect")
 					   .data(dataset)
+					   .transition()
+.delay(function(d, i) {
+    return i * 50;
+})					   .duration(timing).ease(easing)
 					   .attr("y", function(d) {
 					   		return h - yScale(d);
 					   })
@@ -101,6 +120,10 @@
 					//Update all labels
 					svg.selectAll("text")
 					   .data(dataset)
+ 					   .transition()
+.delay(function(d, i) {
+    return i * 50;
+})					   .duration(timing).ease(easing)
 					   .text(function(d) {
 					   		return d;
 					   })
