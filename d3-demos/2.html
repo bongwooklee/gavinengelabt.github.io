@@ -2,18 +2,18 @@
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<div id="main-menu" class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-primary">Example Data 1</button>
+  <button type="button" class="btn btn-success">Example Data 2</button>
+  <button type="button" class="btn btn-info">Example Data 3</button>
+</div>
+
+
 <div id="holder">
     <div id="theamazingpie"></div>
 </div>
-<ul class="testers">
-    <li><a href="#">1</a>
-
-    </li>
-    <li><a href="#">2</a>
-
-    </li>
-</ul>
-
 
 
 <style>
@@ -42,7 +42,10 @@ var dataset = [{
     data: [53245, 28479, 19697, 24037, 40245, 34, 45, 64]
 }, {
     data: [855, 79, 97, 237, 245, 7, 44, 7, 56, 6]
-}];
+}, {
+    data: [85, 7, 9, 23, 24, 7, 4, 7, 5, 6]
+}
+];
 
 
 var theAmazingPie = {
@@ -335,11 +338,14 @@ document.addEventListener("DOMContentLoaded", function() {
     theAmazingPie.buildPieStructure();
     theAmazingPie.update(dataset[0].data);
 
-    $(".testers a").on("click", function (e) {
+    // $(".testers a").on("click", function (e) {
+    $("#main-menu button").on("click", function (e) {
+
         e.preventDefault();
 
         var clone = jQuery.extend(true, {}, dataset);
-        var pos = $(this).parent("li").index();
+        var pos = $(this).index();
+        console.log({pos:pos});
         theAmazingPie.update(clone[pos].data);
     });
 });
